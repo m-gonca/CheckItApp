@@ -1,8 +1,16 @@
 <template>
-  <div>hello</div>
+  <Nav/>
+  <NewTask/>
+  <!-- <TaskItem/> -->
+  
 </template>
 
-<script setup></script>
+<script setup>
+import Nav from "../components/Nav.vue";
+import NewTask from "../components/NewTask.vue";
+// import TaskItem from "../components/TaskItem.vue";
+
+</script>
 
 <style></style>
 

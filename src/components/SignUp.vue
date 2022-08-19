@@ -16,7 +16,7 @@
       <input type="password" placeholder="Password" v-model="confirmPassword" required/>
     </div>
     <input type="submit" />
-    <h1 v-show="errorMsg">{{ errorMsg }}</h1>
+    <p v-show="errorMsg">{{ errorMsg }}</p>
   </form>
 
 </template>

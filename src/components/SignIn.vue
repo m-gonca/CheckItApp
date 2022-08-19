@@ -12,6 +12,7 @@
       <input type="password" placeholder="Password" v-model="password" required/>
     </div>
     <input type="submit" />
+    <p v-show="errorMsg">{{ errorMsg }}</p>
   </form>
 </template>
 
@@ -52,14 +53,12 @@ const signIn = async () => {
     redirect.push({ path: "/" });
   } catch (error) {
     // displays error message
-    // errorMsg.value = `Error: ${error.message}`;
        errorMsg.value = error.message;
     // hides error message
     setTimeout(() => {
       errorMsg.value = null;
     }, 5000);
   };
-  errorMsg.value = "error :(";
 };
 </script>
 

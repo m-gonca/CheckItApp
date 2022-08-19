@@ -5,11 +5,11 @@
     <div>
       <p>monica.g.calleja@gmail.com</p>
       <label for="email">Email</label>
-      <input type="text" placeholder="email" v-model="email" />
+      <input type="text" placeholder="email" v-model="email" required/>
     </div>
     <div>
       <label for="password">Password</label>
-      <input type="password" placeholder="Password" v-model="password" />
+      <input type="password" placeholder="Password" v-model="password" required/>
     </div>
     <input type="submit" />
   </form>

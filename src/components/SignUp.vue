@@ -5,18 +5,20 @@
     <div>
       <p>monica.g.calleja@gmail.com</p>
       <label for="email">Email</label>
-      <input type="text" placeholder="email" v-model="email" />
+      <input type="text" placeholder="email" v-model="email" required />
     </div>
     <div>
       <label for="password">Password</label>
-      <input type="password" placeholder="Password" v-model="password" />
+      <input type="password" placeholder="Password" v-model="password" required/>
     </div>
     <div>
       <label for="password">Confirm Password</label>
-      <input type="password" placeholder="Password" v-model="confirmPassword" />
+      <input type="password" placeholder="Password" v-model="confirmPassword" required/>
     </div>
     <input type="submit" />
+    <h1 v-show="errorMsg">{{ errorMsg }}</h1>
   </form>
+
 </template>
 
 <script setup>
@@ -63,7 +65,8 @@ const signUp = async () => {
       await useUserStore().signUp(email.value, password.value);
       // redirects user to the homeView
       redirect.push({ path: "/auth/login" });
-    } catch (error) {
+    }
+    catch (error) {
       // displays error message
       errorMsg.value = error.message;
       // hides error message

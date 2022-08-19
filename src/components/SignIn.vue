@@ -1,9 +1,10 @@
 <template>
   <div>Sign In</div>
   <PersonalRouter :route="route" :buttonText="buttonText" />
-  <form action="">
-    <input :type="text">
-    <input type="text">
+  <form @click.prevent="signIn">
+    <input type="text" v-model="email">
+    <input type="password" v-model="password">
+    <input type="submit">
   </form>
 </template>
 
@@ -51,6 +52,8 @@ const signIn = async () => {
     }, 5000);
   }
 };
+
+
 </script>
 
 <style>

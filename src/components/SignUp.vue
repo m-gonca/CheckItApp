@@ -3,7 +3,6 @@
   <PersonalRouter :route="route" :buttonText="buttonText" />
   <form @submit.prevent="signUp">
     <div>
-      <p>monica.g.calleja@gmail.com</p>
       <label for="email">Email</label>
       <input type="text" placeholder="email" v-model="email" required />
     </div>

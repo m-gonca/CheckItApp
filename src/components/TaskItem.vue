@@ -1,12 +1,21 @@
 <template>
-  <div>Task Item Component</div>
+  <div v-for="task in taskStore.tasks" :key="task.user_id">
+	<!-- <TaskItem
+      @delete-task="$emit('delete-task', task.id)"
+	  @toggle-reminder="$emit('toggle-reminder', task.id)"
+      :task="task"
+    /> -->
+    <div>{{ taskStore.title }}</div>
+    <div>{{ taskStore.description }}</div>
+    </div>
 </template>
 
 <script setup>
-// const emit = defineEmits([
-//   ENTER-EMITS-HERE
-// ])
+import { useTaskStore } from "../stores/task";
 
+const taskStore = useTaskStore();
+
+// const emit = defineEmits(["delete-task", "toggle-reminder"])
 // const props = defineProps(["ENTER-PROP-HERE"]);
 </script>
 

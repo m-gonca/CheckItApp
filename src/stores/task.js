@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { supabase } from "../supabase";
 import { useUserStore } from "./user";
 
+
 export const useTaskStore = defineStore("tasks", {
   state: () => ({
     tasks: null,

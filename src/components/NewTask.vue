@@ -72,8 +72,8 @@ const newTaskEmit = () => {
     };
     emit("new-task", newTask);
     (taskTitle.value = ""), (taskDescription.value = "");
-    console.log("this is the emit");
-    console.log(emit);
+    // console.log("this is the emit");
+    // console.log(emit);
   }
 };
 </script>

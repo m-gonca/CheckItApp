@@ -1,14 +1,12 @@
 <template>
   <Nav />
-   <h3>{{ time2 }}</h3>
   <NewTask @new-task="addToDo" />
-  <TaskItem    
-  :task="task"
-  v-for="task in taskStore.tasks" :key="task.id"/>  
- 
-  <!-- <h1 
-  v-for="task in taskStore.tasks" :key="task">
-    {{ task.title }}</h1> -->
+  <TaskItem
+    :task="task"
+    v-for="task in taskStore.tasks"
+    :key="task.id"
+    @childDelete="deleteToDo"
+  />
   <!-- <Footer/> -->
 </template>
 
@@ -19,9 +17,6 @@ import NewTask from "../components/NewTask.vue";
 import TaskItem from "../components/TaskItem.vue";
 // import Footer from "../components/Footer.vue";
 import { useTaskStore } from "../stores/task";
-import moment from "moment";
-
-
 
 const taskStore = useTaskStore();
 
@@ -38,14 +33,19 @@ const addToDo = async (newTask) => {
   taskStore.fetchTasks();
 };
 
+const deleteToDo = async (id) => {
+  // const taskId = task.id;
+  const res = await taskStore.deleteTask(id);
+  taskStore.fetchTasks();
+};
+
 onMounted(() => {
   taskStore.fetchTasks();
 });
 
-const time2 = onMounted(() => {
-  moment().format("Do MMMM YYYY, h:mm:ss a");
-});
-
+// const time2 = onMounted(() => {
+//   moment().format("Do MMMM YYYY, h:mm:ss a");
+// });
 </script>
 
 <style></style>

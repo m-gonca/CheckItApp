@@ -1,59 +1,82 @@
 <template>
-<div class="flex flex-wrap">
-  <!-- <div  class="flex flex-col w-1/4 bg-slate-50">
-    <div class="flex flex-col">
-      <h2 class="bg-slate-50 rounded-lg">{{ task.title }}</h2>
-      <p class="bg-slate-50 rounded-lg">{{ task.description }}</p>
+  <div class="flex flex-wrap">
+    <div class="flex flex-col w-1/4 bg-slate-50">
+      <div class="flex flex-col">
+        <h2 class="bg-slate-50 rounded-lg">{{ task.title }}</h2>
+        <p class="bg-slate-50 rounded-lg">{{ task.description }}</p>
+      </div>
+
+      <div v-if="showError === true">{{ errorMsg }}</div>
+
+      <div>
+        <button
+          @click="doneTask"
+          class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
+        >
+          Done
+        </button>
+        <button
+          @click="editTask"
+          class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
+        >
+          Edit
+        </button>
+        <button
+          @click="deleteTask"
+          class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
+        >
+          Delete
+        </button>
+      </div>
     </div>
-    <div>
-      <button
-        @click="remainderTask"
-        class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
-      >
-        Remainder
-      </button>
-      <button
-        @click="editTask"
-        class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
-      >
-        Edit
-      </button>
-      <button
-        @click="deleteTask"
-        class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
-      >
-        Delete
-      </button>
-    </div>
-  </div> -->
- </div>
-<div>
-  <h1>{{ task.title }}</h1>
-  <h2>{{ task.description }}</h2>
-</div>
+  </div>
 </template>
 
 <script setup>
-// import { defineProps } from "vue";
+import { ref, defineProps } from "vue";
+import { useTaskStore } from "../stores/task";
 
+const taskStore = useTaskStore();
 
+//boolean with false for the remainder
+  const remainder = ref("");
+//error message
+  const errorMsg = ref("");
+  const showError = ref("");
+//boolean to toggle the display of the edit inputs
+  const showEdit = ref("");
 
+//we define the emits that are passed on to the father and that
+//we are going to use to trigger the different functionalities 
+const emit = defineEmits(["childDelete", "childDone", "childEdit"]);
 
-//estamos deifiniendo  los emits que pasaremos al padre
-//para accionar las distintas funcionalidades
-const emits = defineEmits(["childDelete", "childReminder", "childEdit"]);
-
+//we define here the prop that is going to be used
+//in the father to store each task from the array
 const props = defineProps(["task"]);
 
-const deleteTask = () => {
+//function to emit de deletefunction if confirmed and
+//passes with it the task.id inside the prop
+const deleteTask = (id) => {
   if(confirm("are u sure u want to delete?")){
-    taskStore.deleteTask(task.user_id);
+    console.log(props.task.id);
+    emit("childDelete", props.task.id);
   }
 };
 
-// const remainderTask = () => {
+//function to emit the reminder update if confirmed and
+//passes with it the task.id inside the prop
+const doneTask = (id) => {
+  emit("childDone", props.task.id);
+};
 
-// };
+
+  // else{
+  //   errorMsg.value = "I couldn't delete that sorri";
+  //   showError.value = true;
+  //   setTimeout(() => {
+  //     showError.value = false;
+  //   }, 5000);
+  // }
 </script>
 
 <style></style>

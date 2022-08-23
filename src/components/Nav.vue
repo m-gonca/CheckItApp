@@ -1,15 +1,16 @@
 <template>
-  <nav>
+  <nav class="w-full">
     <div>
       <router-link to="/"
         ><img
-          src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1660918953/final%20project/preview_je22pk.png"
+          src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129610/final%20project/Recurso_12_yu4gbt.png"
           alt="logo"
+
       /></router-link>
     </div>
     <div class="row">
-      <h3>Wellcome back <strong>{{ name[0] }}</strong></h3>
-      <button @click="signOut">Log out</button>
+      <h3 class="bg-teal-100 w-100 h-full inline-block align-baseline">Wellcome back <strong>{{ name[0] }}</strong></h3>
+      <button @click="signOut" class="bg-teal-400 w-100 h-full">Log out</button>
     </div>
   </nav>
 </template>
@@ -61,11 +62,7 @@ img {
   height: 100%;
 }
 
-button {
-  background-color: rgb(174, 190, 245);
-  width: 100px;
-  height: 100%;
-}
+
 
 .row{
   display: flex;

@@ -1,22 +1,59 @@
 <template>
-  <div v-for="task in taskStore.tasks" :key="task.user_id">
-	<!-- <TaskItem
-      @delete-task="$emit('delete-task', task.id)"
-	  @toggle-reminder="$emit('toggle-reminder', task.id)"
-      :task="task"
-    /> -->
-    <div>{{ taskStore.title }}</div>
-    <div>{{ taskStore.description }}</div>
+<div class="flex flex-wrap">
+  <!-- <div  class="flex flex-col w-1/4 bg-slate-50">
+    <div class="flex flex-col">
+      <h2 class="bg-slate-50 rounded-lg">{{ task.title }}</h2>
+      <p class="bg-slate-50 rounded-lg">{{ task.description }}</p>
     </div>
+    <div>
+      <button
+        @click="remainderTask"
+        class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
+      >
+        Remainder
+      </button>
+      <button
+        @click="editTask"
+        class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
+      >
+        Edit
+      </button>
+      <button
+        @click="deleteTask"
+        class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
+      >
+        Delete
+      </button>
+    </div>
+  </div> -->
+ </div>
+<div>
+  <h1>{{ task.title }}</h1>
+  <h2>{{ task.description }}</h2>
+</div>
 </template>
 
 <script setup>
-import { useTaskStore } from "../stores/task";
+// import { defineProps } from "vue";
 
-const taskStore = useTaskStore();
 
-// const emit = defineEmits(["delete-task", "toggle-reminder"])
-// const props = defineProps(["ENTER-PROP-HERE"]);
+
+
+//estamos deifiniendo  los emits que pasaremos al padre
+//para accionar las distintas funcionalidades
+const emits = defineEmits(["childDelete", "childReminder", "childEdit"]);
+
+const props = defineProps(["task"]);
+
+const deleteTask = () => {
+  if(confirm("are u sure u want to delete?")){
+    taskStore.deleteTask(task.user_id);
+  }
+};
+
+// const remainderTask = () => {
+
+// };
 </script>
 
 <style></style>

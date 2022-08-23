@@ -1,33 +1,50 @@
 <template>
   <Nav />
-  <NewTask @new-task="addToDo"/>
-  <!-- <Tasks
-    @delete-task="deleteTask"
-    @toggle-reminder="toggleReminder"
-    :tasks="tasks"
-  /> -->
-  <TaskItem/>
-  <Footer/>
-
+   <h3>{{ time2 }}</h3>
+  <NewTask @new-task="addToDo" />
+  <TaskItem    
+  :task="task"
+  v-for="task in taskStore.tasks" :key="task.id"/>  
+ 
+  <!-- <h1 
+  v-for="task in taskStore.tasks" :key="task">
+    {{ task.title }}</h1> -->
+  <!-- <Footer/> -->
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import Nav from "../components/Nav.vue";
 import NewTask from "../components/NewTask.vue";
 import TaskItem from "../components/TaskItem.vue";
-import Footer from "../components/Footer.vue";
+// import Footer from "../components/Footer.vue";
 import { useTaskStore } from "../stores/task";
-import { onMounted } from "vue";
+import moment from "moment";
+
+
 
 const taskStore = useTaskStore();
 
-const addToDo = (title, description) => {
-  taskStore.addTask(title, description);
+//aqui guardaremos la array de tasks
+// const tasks = ref([]);
+
+// const fetchTasks = async () => {
+//   tasks.value = await taskStore.fetchTasks();
+// };
+// fetchTasks();
+
+const addToDo = async (newTask) => {
+  const res = await taskStore.addTask(newTask.title, newTask.description);
+  taskStore.fetchTasks();
 };
 
-onMounted(( ) => {
-      taskStore.fetchTasks();
-    });
+onMounted(() => {
+  taskStore.fetchTasks();
+});
+
+const time2 = onMounted(() => {
+  moment().format("Do MMMM YYYY, h:mm:ss a");
+});
 
 </script>
 

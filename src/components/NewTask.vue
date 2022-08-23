@@ -1,72 +1,85 @@
 <template>
-  <div class="container">
-    <h1>Add a new task</h1>
-    <h3>Today is the day you start organizing your shit :D</h3>
-    <h3>aaand today is DATE</h3>
-    <form>
-      <label>task</label>
-      <div>
+  <div class="m-20 flex flex-col text-center">
+    <h1>CHECK IT</h1>
+    <h3 class="mb-8">Today is the day you start organizing your shit :D</h3>
+    <h3>{{ time }}</h3>
+
+    <form @submit.prevent="newTaskEmit" class="grid gap-4">
+      <div class="flex justify-between">
+        <label class="w-1/5 border-solid border-4 border-teal-400 rounded-xl">Your task goes here</label>
         <input
           type="text"
           placeholder="task title"
           v-model="taskTitle"
-          required
+          class="bg-teal-100 w-full"
         />
       </div>
-      <label>description</label>
-      <div>
+      <div class="flex justify-between">
+        <label  class="w-1/5 border-solid border-4 border-teal-400 rounded-xl">Your description goes here</label>
         <input
           type="text"
           placeholder="task description"
           v-model="taskDescription"
-          required
+          class="bg-teal-100 w-full"
         />
-      </div>    
-      <div v-if="showError">{{ errorMsg }}</div> 
-      <button @click="newTaskCheckAndEmit">Add</button>
+      </div>
+
+      <div v-if="showError === true">{{ errorMsg }}</div>
+     
+      <input type="submit" value="Save Task" class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4" />
     </form>
+    
   </div>
 </template>
 
 <script setup>
+import { useTaskStore } from "../stores/task";
+import { ref, defineEmits } from "vue";
+import moment from "moment";
 
-import { ref } from "vue";
+const taskStore = useTaskStore();
 
-// constant to save a variable that defines the custom event that will be emitted to the homeView
-const emit = defineEmits(["new-task"])
 // constant to save a variable that holds the value of the title input field of the new task
 const taskTitle = ref("");
 // constant to save a variable that holds the value of the description input field of the new task
 const taskDescription = ref("");
 // constant to save a variable that holds an initial false boolean value for the errorMessage container that is conditionally displayed depending if the input field is empty
-const showError = false;
+const showError = ref("");
 // const constant to save a variable that holds the value of the error message
 const errorMsg = ref("");
+
+// const where I can save the date
+
+const time = moment().format("Do MMMM YYYY, h:mm:ss a");
+
+// constant to save a variable that defines the custom event that will be emitted to the homeView
+const emit = defineEmits(["new-task"]);
+
 // arrow function to call the form holding the task title and task description that uses a conditional to first checks if the task title is empty, if true the error message is displayed through the errorMessage container and sets a timeOut method that hides the error after some time. Else, its emmits a custom event to the home view with the task title and task description; clears the task title and task description input fields.
 
-const newTaskCheckAndEmit = async () => {
-  if(!taskTitle.value || !taskDescription.value){
-    alert("Yo yo yo, you best believe this aint gonna work homie! ");
+const newTaskEmit = () => {
+  if (taskTitle.value.length === 0 || taskDescription.value.length === 0) {
+    // alert("Yo yo yo, you best believe this aint gonna work homie! ");
     errorMsg.value = "Don't you need something to work on to use this app?";
-    showError = true;
+    showError.value = true;
     setTimeout(() => {
-           showError = false;
+      showError.value = false;
     }, 5000);
-  }
-  else{
-    this.$emit('new-task', taskTitle, taskDescription)
+  } else {
+    const newTask = {
+      title: taskTitle.value,
+      description: taskDescription.value,
+    };
+    emit("new-task", newTask);
     (taskTitle.value = ""), (taskDescription.value = "");
+    console.log("this is the emit");
+    console.log(emit);
   }
 };
 </script>
 
 <style scoped>
-.container {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
+
 h1 {
   font-size: 40px;
 }

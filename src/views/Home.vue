@@ -7,6 +7,7 @@
     :key="task.id"
     @childDelete="deleteToDo"
     @childDone="toggleComplete"
+    @childEdit="editToDo"
   />
   <!-- <Footer/> -->
 </template>
@@ -46,7 +47,12 @@ const deleteToDo = async (id) => {
 };
 
 const toggleComplete = async (id) => {
-  const res = await taskStore.updateTask(id);
+  const res = await taskStore.updateTaskComplete(id);
+  taskStore.fetchTasks();
+};
+
+const editToDo = async (newTask) => {
+  const res = await taskStore.updateTaskEdit(newTask.id, newTask.title, newTask.description);
   taskStore.fetchTasks();
 };
 

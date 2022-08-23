@@ -4,9 +4,34 @@
       <div class="flex flex-col">
         <h2 class="bg-slate-50 rounded-lg">{{ task.title }}</h2>
         <p class="bg-slate-50 rounded-lg">{{ task.description }}</p>
-      </div>
 
-      <div v-if="showError === true">{{ errorMsg }}</div>
+        <div v-if="showEditBar">
+          <form @submit.prevent="editTask" class="grid gap-4">
+            <div class="flex justify-between">
+              <input
+                type="text"
+                placeholder="new task title"
+                v-model="taskTitle"
+                class="bg-teal-100 w-full"
+              />
+            </div>
+            <div class="flex justify-between">
+              <input
+                type="text"
+                placeholder="new task description"
+                v-model="taskDescription"
+                class="bg-teal-100 w-full"
+              />
+            </div>
+            <!-- <div v-if="showError === true">{{ errorMsg }}</div> -->
+            <input
+              type="submit"
+              value="Update task"
+              class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
+            />
+          </form>
+        </div>
+      </div>
 
       <div>
         <button
@@ -17,7 +42,7 @@
           <p v-else>Done</p>
         </button>
         <button
-          @click="editTask"
+          @click="showEdit"
           class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
         >
           Edit
@@ -35,20 +60,22 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
-import { useTaskStore } from "../stores/task";
 
-const taskStore = useTaskStore();
+//constants to save the variable that holds the value
+//of the title and description from the edit inputs
+const taskTitle = ref("");
+const taskDescription = ref("");
 
 //boolean with false for the remainder
-  const doneBoolean = ref("");
+const doneBoolean = ref("");
 //error message
-  const errorMsg = ref("");
-  const showError = ref("");
+const errorMsg = ref("");
+const showError = ref("");
 //boolean to toggle the display of the edit inputs
-  const showEdit = ref("");
+const showEditBar =  ref("");
 
 //we define the emits that are passed on to the father and that
-//we are going to use to trigger the different functionalities 
+//we are going to use to trigger the different functionalities
 const emit = defineEmits(["childDelete", "childDone", "childEdit"]);
 
 //we define here the prop that is going to be used
@@ -57,15 +84,15 @@ const props = defineProps(["task"]);
 
 //function to emit de deletefunction if confirmed and
 //passes with it the task.id inside the prop
-const deleteTask = (id) => {
-  if(confirm("are u sure u want to delete?")){
+const deleteTask = () => {
+  if (confirm("are u sure u want to delete?")) {
     console.log(props.task.id);
     emit("childDelete", props.task.id);
   }
 };
 
 //function that emits the childDone emit to update the tick sign
-//in home. To know from which task, it passes with it the 
+//in home. To know from which task, it passes with it the
 //task.id inside the prop
 const doneTask = (id) => {
   emit("childDone", props.task.id);
@@ -73,13 +100,34 @@ const doneTask = (id) => {
 };
 
 
-  // else{
-  //   errorMsg.value = "I couldn't delete that sorri";
-  //   showError.value = true;
-  //   setTimeout(() => {
-  //     showError.value = false;
-  //   }, 5000);
-  // }
+//function to show the edit bar
+
+const showEdit = () => {
+  showEditBar.value = !showEditBar.value;
+};
+
+//function to edit a task's title and description. We will
+//have to create an object with the object's id and the
+//title and description value coming from the edit inputs
+const editTask = () => {
+  // showEditbar.value = true;
+  const newTask = {
+      id: props.task.id,
+      title: taskTitle.value,
+      description: taskDescription.value,
+    };
+  emit("childEdit", newTask);
+  (taskTitle.value = ""), (taskDescription.value = "");
+};
+
+//me falta una funcion to handle errors
+// else{
+//   errorMsg.value = "I couldn't delete that sorri";
+//   showError.value = true;
+//   setTimeout(() => {
+//     showError.value = false;
+//   }, 5000);
+// }
 </script>
 
 <style></style>

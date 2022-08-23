@@ -33,11 +33,9 @@
 </template>
 
 <script setup>
-import { useTaskStore } from "../stores/task";
+
 import { ref, defineEmits } from "vue";
 import moment from "moment";
-
-const taskStore = useTaskStore();
 
 // constant to save a variable that holds the value of the title input field of the new task
 const taskTitle = ref("");
@@ -59,7 +57,6 @@ const emit = defineEmits(["new-task"]);
 
 const newTaskEmit = () => {
   if (taskTitle.value.length === 0 || taskDescription.value.length === 0) {
-    // alert("Yo yo yo, you best believe this aint gonna work homie! ");
     errorMsg.value = "Don't you need something to work on to use this app?";
     showError.value = true;
     setTimeout(() => {
@@ -72,8 +69,6 @@ const newTaskEmit = () => {
     };
     emit("new-task", newTask);
     (taskTitle.value = ""), (taskDescription.value = "");
-    // console.log("this is the emit");
-    // console.log(emit);
   }
 };
 </script>

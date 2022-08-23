@@ -13,7 +13,8 @@
           @click="doneTask"
           class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
         >
-          Done
+          <p v-if="!doneBoolean">Not done</p>
+          <p v-else>Done</p>
         </button>
         <button
           @click="editTask"
@@ -39,7 +40,7 @@ import { useTaskStore } from "../stores/task";
 const taskStore = useTaskStore();
 
 //boolean with false for the remainder
-  const remainder = ref("");
+  const doneBoolean = ref("");
 //error message
   const errorMsg = ref("");
   const showError = ref("");
@@ -63,10 +64,12 @@ const deleteTask = (id) => {
   }
 };
 
-//function to emit the reminder update if confirmed and
-//passes with it the task.id inside the prop
+//function that emits the childDone emit to update the tick sign
+//in home. To know from which task, it passes with it the 
+//task.id inside the prop
 const doneTask = (id) => {
   emit("childDone", props.task.id);
+  doneBoolean.value = !doneBoolean.value;
 };
 
 

@@ -6,6 +6,7 @@
     v-for="task in taskStore.tasks"
     :key="task.id"
     @childDelete="deleteToDo"
+    @childDone="toggleComplete"
   />
   <!-- <Footer/> -->
 </template>
@@ -20,8 +21,14 @@ import { useTaskStore } from "../stores/task";
 
 const taskStore = useTaskStore();
 
-//aqui guardaremos la array de tasks
+//another option is to save the array in a const with ref
+//to use it on the v-for of the template instead 
+//of using it from the store
+
 // const tasks = ref([]);
+
+//here we create a fetch function that stores the fetched tasks 
+//in the previous array and afterwards we call it to work
 
 // const fetchTasks = async () => {
 //   tasks.value = await taskStore.fetchTasks();
@@ -34,8 +41,12 @@ const addToDo = async (newTask) => {
 };
 
 const deleteToDo = async (id) => {
-  // const taskId = task.id;
   const res = await taskStore.deleteTask(id);
+  taskStore.fetchTasks();
+};
+
+const toggleComplete = async (id) => {
+  const res = await taskStore.updateTask(id);
   taskStore.fetchTasks();
 };
 
@@ -43,9 +54,7 @@ onMounted(() => {
   taskStore.fetchTasks();
 });
 
-// const time2 = onMounted(() => {
-//   moment().format("Do MMMM YYYY, h:mm:ss a");
-// });
+
 </script>
 
 <style></style>

@@ -9,7 +9,9 @@ export const useTaskStore = defineStore("tasks", {
     reminder: false,
   }),
   actions: {
-    //bring all tasks from backend and put them in the tasks array
+    //bring all tasks from backend and put them in the tasks 
+    //array this function will have to be called in home to be 
+    //shown in the front
 
     async fetchTasks() {
       const { data: tasks } = await supabase
@@ -20,22 +22,9 @@ export const useTaskStore = defineStore("tasks", {
       return this.tasks;
     },
 
-    //bring an individual task from backend and return it
-    // async fetchTasks(id) {
-    //   const { data, error } = await supabase
-    //     .from("tasks")
-    //     .select("*, tasks!inner(*)")
-    //     .eq("tasks.id", id);
-
-    //   // const { data: tasks } = await supabase
-    //   //   .from("tasks")
-    //   //   .select("*")
-    //   //   .order("id", { ascending: false });
-    //   this.taskToRemind = tasks;
-    //   return this.tasks;
-    // },
-
     //add a task to backend supabase and add it to the tasks array
+    //this only updates the table in supabase, to show the new item
+    //we have to fetch it in home again
 
     async addTask(title, description) {
       console.log(useUserStore().user.id);
@@ -49,7 +38,9 @@ export const useTaskStore = defineStore("tasks", {
       ]);
     },
 
-    //delete task from supabase and update the array
+    //delete task from supabase and update the array 
+    //with a filter method that creates a copy of the array
+    //with all the tasks whose id doesnt match the one we want to delete
 
     async deleteTask(id) {
       const { data, error } = await supabase
@@ -60,33 +51,20 @@ export const useTaskStore = defineStore("tasks", {
       this.tasks = this.tasks.filter((task) => task.id !== id);
     },
 
-    //toggle reminder
+    //update to true the is_complete key from the task in supabase
+    //and update with a map method the task array. We do this by looking
+    //for the matching id (if it doesnt match, it leaves the 
+    //task the same as before) and if it matches, it changes the key 
+    //to true through data.is_complete 
 
-    async toggleReminder(id) {
+    async updateTask(id) {
       const { data, error } = await supabase
         .from("tasks")
-        .update({ id: id })
+        .update({ is_complete: true })
         .match({ id: id });
 
         this.tasks = this.tasks.map((task) =>
-        task.id === id ? { ...task, reminder: !data.reminder } : task);
-
-      // const taskToToggle =  await this.fetchTask(id);
-      // const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
-
-      // const res = await fetch(`api/tasks/${id}`, {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-type": "application/json",
-      //   },
-      //   body: JSON.stringify(updTask),
-      // });
-
-      // const data = await res.json();
-
-      // this.tasks = this.tasks.map((task) =>
-      //   task.id === id ? { ...task, reminder: !data.reminder } : task
-      // );
+        task.id === id ? { ...task, is_complete: !data.is_complete } : task);
     },
   },
 });

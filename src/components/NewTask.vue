@@ -6,7 +6,7 @@
 
     <form @submit.prevent="newTaskEmit" class="grid gap-4">
       <div class="flex justify-between">
-        <label class="w-1/5 border-solid border-4 border-teal-400 rounded-xl">Your task goes here</label>
+        <label class="w-1/5 border-solid border-4 border-teal-400 rounded-xl">New Task</label>
         <input
           type="text"
           placeholder="task title"
@@ -15,7 +15,7 @@
         />
       </div>
       <div class="flex justify-between">
-        <label  class="w-1/5 border-solid border-4 border-teal-400 rounded-xl">Your description goes here</label>
+        <label  class="w-1/5 border-solid border-4 border-teal-400 rounded-xl">What do you need to do?</label>
         <input
           type="text"
           placeholder="task description"

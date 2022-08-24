@@ -1,12 +1,15 @@
 <template>
-  <div class="m-20 flex flex-col text-center">
-    <h1>CHECK IT</h1>
-    <h3 class="mb-8">Today is the day you start organizing your shit :D</h3>
-    <h3>{{ time }}</h3>
+  <div class="m-20 flex flex-col text-center gap-4">
+    <h1 class="self-center text-xl font-light">Wellcome back</h1>
+    <h1 class="self-center text-xl font-semibold">{{ name[0] }}</h1>
+    <h3 class="m-8">Here are your tasks for today :D</h3>
+    <h3>Today is {{ time }} and here are your previous tasks</h3>
 
     <form @submit.prevent="newTaskEmit" class="grid gap-4">
       <div class="flex justify-between">
-        <label class="w-1/5 border-solid border-4 border-teal-400 rounded-xl">New Task</label>
+        <label class="w-1/5 border-solid border-4 border-teal-400 rounded-xl"
+          >New Task</label
+        >
         <input
           type="text"
           placeholder="task title"
@@ -15,7 +18,9 @@
         />
       </div>
       <div class="flex justify-between">
-        <label  class="w-1/5 border-solid border-4 border-teal-400 rounded-xl">What do you need to do?</label>
+        <label class="w-1/5 border-solid border-4 border-teal-400 rounded-xl"
+          >What do you need to do?</label
+        >
         <input
           type="text"
           placeholder="task description"
@@ -25,18 +30,27 @@
       </div>
 
       <div v-if="showError === true">{{ errorMsg }}</div>
-     
-      <input type="submit" value="Save Task" class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4" />
+
+      <input
+        type="submit"
+        value="Save Task"
+        class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
+      />
     </form>
-    
   </div>
 </template>
 
 <script setup>
-
 import { ref, defineEmits } from "vue";
 import moment from "moment";
+import { useUserStore } from "../stores/user";
 
+// constant to save a variable that will get the user from store with a computed function imported from vue
+const userStore = useUserStore();
+// constant that calls user email from the useUSerStore
+const email = userStore.user.email;
+// constant that saves the user email and cleans out the @client from the user
+const name = email.split("@");
 // constant to save a variable that holds the value of the title input field of the new task
 const taskTitle = ref("");
 // constant to save a variable that holds the value of the description input field of the new task
@@ -48,7 +62,8 @@ const errorMsg = ref("");
 
 // const where I can save the date
 
-const time = moment().format("Do MMMM YYYY, h:mm:ss a");
+// const time = moment().format("Do MMMM YYYY, h:mm:ss a");
+const time = moment().format("Do MMMM YYYY");
 
 // constant to save a variable that defines the custom event that will be emitted to the homeView
 const emit = defineEmits(["new-task"]);
@@ -74,7 +89,6 @@ const newTaskEmit = () => {
 </script>
 
 <style scoped>
-
 h1 {
   font-size: 40px;
 }

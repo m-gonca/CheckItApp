@@ -1,15 +1,48 @@
 <template>
   <Nav />
-  <NewTask @new-task="addToDo" />
-  <TaskItem
-    :task="task"
-    v-for="task in taskStore.tasks"
-    :key="task.id"
-    @childDelete="deleteToDo"
-    @childDone="toggleComplete"
-    @childEdit="editToDo"
-  />
-  <!-- <Footer/> -->
+  <body class="w-full">
+    <div
+      class="flex flex-col w-full h-full bg-no-repeat bg-cover bg-bottom"
+      style="
+        background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661359893/final%20project/02460614940ea24714c7dc28fc03438b_hskgnu.jpg);
+      "
+    >
+      <NewTask @new-task="addToDo" />
+      <div class="flex flex-wrap justify-around py-10  bg-black/50">
+        <TaskItem
+          :task="task"
+          v-for="task in taskStore.tasks"
+          :key="task.id"
+          @childDelete="deleteToDo"
+          @childDone="toggleComplete"
+          @childEdit="editToDo"
+        />
+      </div>
+    </div>
+    
+  </body>
+  <Footer />
+  <!-- <body class="w-full border-2 border-red-300 flex flex-col">
+    <div
+      class="flex flex-col lg:flex-row w-full border-2 "
+      style="
+        background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129745/final%20project/02460614940ea24714c7dc28fc03438b_vpkhdu.jpg);
+      "
+    >
+      <NewTask @new-task="addToDo" />
+      <div class="lg:w-3/5 flex flex-wrap justify-around border-2 border-green-700 bg-black/50">
+        <TaskItem
+          :task="task"
+          v-for="task in taskStore.tasks"
+          :key="task.id"
+          @childDelete="deleteToDo"
+          @childDone="toggleComplete"
+          @childEdit="editToDo"
+        />
+      </div>
+    </div>
+    <Footer />
+  </body> -->
 </template>
 
 <script setup>
@@ -17,18 +50,18 @@ import { onMounted } from "vue";
 import Nav from "../components/Nav.vue";
 import NewTask from "../components/NewTask.vue";
 import TaskItem from "../components/TaskItem.vue";
-// import Footer from "../components/Footer.vue";
+import Footer from "../components/Footer.vue";
 import { useTaskStore } from "../stores/task";
 
 const taskStore = useTaskStore();
 
 //another option is to save the array in a const with ref
-//to use it on the v-for of the template instead 
+//to use it on the v-for of the template instead
 //of using it from the store
 
 // const tasks = ref([]);
 
-//here we create a fetch function that stores the fetched tasks 
+//here we create a fetch function that stores the fetched tasks
 //in the previous array and afterwards we call it to work
 
 // const fetchTasks = async () => {
@@ -52,15 +85,17 @@ const toggleComplete = async (id) => {
 };
 
 const editToDo = async (newTask) => {
-  const res = await taskStore.updateTaskEdit(newTask.id, newTask.title, newTask.description);
+  const res = await taskStore.updateTaskEdit(
+    newTask.id,
+    newTask.title,
+    newTask.description
+  );
   taskStore.fetchTasks();
 };
 
 onMounted(() => {
   taskStore.fetchTasks();
 });
-
-
 </script>
 
 <style></style>

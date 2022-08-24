@@ -1,48 +1,50 @@
 <template>
-  <div class="m-20 flex flex-col text-center gap-4">
-    <h1 class="self-center text-xl font-light">Wellcome back</h1>
-    <h1 class="self-center text-xl font-semibold">{{ name[0] }}</h1>
-    <h3 class="m-8">Here are your tasks for today :D</h3>
-    <h3>Today is {{ time }} and here are your previous tasks</h3>
+  <div
+    class="py-20 flex flex-col items-center gap-20 bg-opacity-75"
+  >
+    <div class="w-full flex flex-col gap-4 text-center">
+      <h1 class="self-center text-4xl font-light">Wellcome back</h1>
+      <h1 class="self-center text-4xl font-semibold">{{ name[0] }}</h1>
+    </div>
+    <div class="w-1/2 bg-teal-200/20 rounded-xl">
+    <p class="my-4 font-normal text-center text-white">Have anything to do?</p>
+    <p class="mb-4 font-semibold text-center text-lg text-white">Add it to the list!</p>
+      <form @submit.prevent="newTaskEmit" class="grid gap-4">
+        <div class="flex justify-between">
+          <input
+            type="text"
+            maxlength="200"
+            placeholder="task title"
+            v-model="taskTitle"
+            class="bg-teal-100 w-full"
+          />
+        </div>
+        <div class="flex justify-between">
+          <textarea
+            type="text"
+            maxlength="500"
+            rows="3"
+            placeholder="task description"
+            v-model="taskDescription"
+            class="bg-teal-100 w-full"
+          />
+        </div>
 
-    <form @submit.prevent="newTaskEmit" class="grid gap-4">
-      <div class="flex justify-between">
-        <label class="w-1/5 border-solid border-4 border-teal-400 rounded-xl"
-          >New Task</label
-        >
+        <div v-if="showError === true" class="w-full text-center text-red-400 bg-violet-500/50 mt-5 px-5 py-2 rounded-full">{{ errorMsg }}</div>
+
         <input
-          type="text"
-          placeholder="task title"
-          v-model="taskTitle"
-          class="bg-teal-100 w-full"
+          type="submit"
+          value="Save Task"
+          class="bg-teal-400 text-gray-700 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
         />
-      </div>
-      <div class="flex justify-between">
-        <label class="w-1/5 border-solid border-4 border-teal-400 rounded-xl"
-          >What do you need to do?</label
-        >
-        <input
-          type="text"
-          placeholder="task description"
-          v-model="taskDescription"
-          class="bg-teal-100 w-full"
-        />
-      </div>
-
-      <div v-if="showError === true">{{ errorMsg }}</div>
-
-      <input
-        type="submit"
-        value="Save Task"
-        class="bg-teal-400 rounded-xl mt-4 pt-2 pb-2 pl-4 pr-4"
-      />
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, defineEmits } from "vue";
-import moment from "moment";
+// import moment from "moment";
 import { useUserStore } from "../stores/user";
 
 // constant to save a variable that will get the user from store with a computed function imported from vue
@@ -63,7 +65,7 @@ const errorMsg = ref("");
 // const where I can save the date
 
 // const time = moment().format("Do MMMM YYYY, h:mm:ss a");
-const time = moment().format("Do MMMM YYYY");
+
 
 // constant to save a variable that defines the custom event that will be emitted to the homeView
 const emit = defineEmits(["new-task"]);
@@ -72,7 +74,7 @@ const emit = defineEmits(["new-task"]);
 
 const newTaskEmit = () => {
   if (taskTitle.value.length === 0 || taskDescription.value.length === 0) {
-    errorMsg.value = "Don't you need something to work on to use this app?";
+    errorMsg.value = "What's the task you wanna save ?(-ᴥ-ʋ)";
     showError.value = true;
     setTimeout(() => {
       showError.value = false;
@@ -88,8 +90,4 @@ const newTaskEmit = () => {
 };
 </script>
 
-<style scoped>
-h1 {
-  font-size: 40px;
-}
-</style>
+<style></style>

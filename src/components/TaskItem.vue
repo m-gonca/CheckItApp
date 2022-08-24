@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap">
+  <div class="w-3/5 flex flex-wrap">
     <div class="flex flex-col w-1/4 bg-slate-50">
       <div class="flex flex-col">
         <h2 class="bg-slate-50 rounded-lg">{{ task.title }}</h2>

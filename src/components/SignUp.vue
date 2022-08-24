@@ -5,10 +5,10 @@
       <div
         class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
         style="
-          background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129745/final%20project/02460614940ea24714c7dc28fc03438b_vpkhdu.jpg);
+          background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661353038/final%20project/2a66194c6a16e0eed2f26f792bff7561_otog4z.gif);
         "
       >
-        <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+        <div class="absolute bg-black opacity-40 inset-0 z-0"></div>
         <div
           class="w-full px-24 z-10 divide-y divide-teal-400 border-b-4 border-teal-400"
         >
@@ -20,20 +20,21 @@
             Check it. ✓
           </h1>
         </div>
+        <p class="absolute bottom-1 left-2 text-gray-500/50">Art by @waneella</p>
       </div>
       <!-- SIGN UP -->
       <div
-        class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0"
+        class="lg:w-1/2 w-full relative flex items-center justify-center text-center md:px-16 px-0 z-0"
         style="background-color: #161616"
       >
         <!-- BACKGROUND IN MOBILE MODE -->
         <div
           class="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center bg-center"
           style="
-            background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129745/final%20project/02460614940ea24714c7dc28fc03438b_vpkhdu.jpg);
+            background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661353038/final%20project/2a66194c6a16e0eed2f26f792bff7561_otog4z.gif);
           "
         >
-          <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+          <div class="absolute bg-black opacity-40 inset-0 z-0"></div>
         </div>
         <div class="w-full h-full py-6 z-20 flex flex-col justify-between">
           <!-- LOGO -->
@@ -139,6 +140,7 @@
               </a>
             </div>
           </div>
+          <p class="absolute lg:hidden bottom-1 left-2 text-gray-500/50">Art by @waneella</p>
         </div>
       </div>
     </section>

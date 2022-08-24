@@ -1,6 +1,7 @@
 <template>
   <body>
     <section class="min-h-screen flex items-stretch text-white">
+      <!-- LEFT COVER ON DESKTOP MODE -->
       <div
         class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
         style="
@@ -20,6 +21,7 @@
           </h1>
         </div>
       </div>
+      <!-- SIGN UP -->
       <div
         class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0"
         style="background-color: #161616"
@@ -35,7 +37,7 @@
         </div>
         <div class="w-full h-full py-6 z-20 flex flex-col justify-between">
           <!-- LOGO -->
-          <div class="w-36 object-center mx-auto mb-6 mt-20">
+          <div class="w-36 object-center mx-auto mb-6 mt-32">
             <img
               src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129610/final%20project/Recurso_12_yu4gbt.png"
               alt="logo"
@@ -86,7 +88,9 @@
               >
                 sign up
               </button>
-              <p v-show="errorMsg">{{ errorMsg }}</p>
+              <!-- ERROR MESSAGE -->
+              <p v-show="errorMsg" class="w-full text-red-400 bg-violet-500/50 mt-5 p-2 rounded-full">{{ errorMsg }}</p>
+              <!-- LINK TO SIGN IN -->
               <p class="text-gray-100 mt-5">
                 Already have an account?
                 <PersonalRouter
@@ -108,6 +112,7 @@
               <a href="https://www.linkedin.com/in/monica-gonzalez-calleja">
                 <svg
                   fill="#fff"
+                  class="hover:fill-violet-400"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -121,6 +126,7 @@
               <a href="https://www.instagram.com/kazehime_/">
                 <svg
                   fill="#fff"
+                  class="hover:fill-violet-400"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -185,7 +191,7 @@ const signUp = async () => {
       redirect.push({ path: "/auth/login" });
     } catch (error) {
       // displays error message
-      errorMsg.value = error.message;
+      errorMsg.value = "There's been an error （◞‸◟ ）";
       // hides error message
       setTimeout(() => {
         errorMsg.value = null;
@@ -193,7 +199,10 @@ const signUp = async () => {
     }
     return;
   }
-  errorMsg.value = "Passwords are not the same :(";
+  errorMsg.value = "Passwords are not the same (ಠ_ʖಠ)";
+  setTimeout(() => {
+        errorMsg.value = null;
+      }, 5000);
 };
 </script>
 

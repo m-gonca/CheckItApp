@@ -1,6 +1,7 @@
 <template>
   <body>
     <section class="min-h-screen flex items-stretch text-white">
+      <!-- LEFT COVER ON DESKTOP MODE -->
       <div
         class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
         style="
@@ -20,11 +21,12 @@
           </h1>
         </div>
       </div>
+      <!-- SIGN IN -->
       <div
         class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0"
         style="background-color: #161616"
       >
-      <!-- BACKGROUND IN MOBILE MODE -->
+        <!-- BACKGROUND IN MOBILE MODE -->
         <div
           class="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center bg-center"
           style="
@@ -35,7 +37,7 @@
         </div>
         <div class="w-full h-full py-6 z-20 flex flex-col justify-between">
           <!-- LOGO -->
-          <div class="w-36 object-center mx-auto mb-6 mt-20">
+          <div class="w-36 object-center mx-auto mb-6 mt-32">
             <img
               src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129610/final%20project/Recurso_12_yu4gbt.png"
               alt="logo"
@@ -68,21 +70,17 @@
                 required
               />
             </div>
-            <div class="px-4 pb-2 pt-4">
+            <div class="pb-2 pt-4">
               <button
                 type="submit"
                 class="uppercase block w-full p-4 text-lg rounded-full bg-teal-400 hover:bg-violet-400 focus:outline-none"
               >
                 sign in
               </button>
-              <p v-show="errorMsg">{{ errorMsg }}</p>
-              <!-- SEND A RECOVERY EMAIL IF PASSWORD IS LOST -->
-              <!-- <div
-                class="text-right text-gray-400 hover:underline hover:text-gray-100"
-              >
-                <a href="#">Forgot your password?</a>
-              </div> -->
-              <p class="text-gray-100 mt-5">
+              <!-- ERROR MESSAGE -->
+              <p v-show="errorMsg" class="w-full text-red-400 bg-violet-500/50 mt-5 p-2 rounded-full">{{ errorMsg }}</p>
+              <!-- SEND RECOVERY EMAIL -->
+              <!-- <p class="text-gray-100 mt-10">
                 Forgot your password?
                 <a
                   href="#"
@@ -90,8 +88,9 @@
                   >Click here!</a
                 >
               </p>
-              <p>•</p>
-              <p class="text-gray-100">
+              <p>•</p> -->
+              <!-- LINK TO SIGN UP -->
+              <p class="text-gray-100 mt-10">
                 Don't have an account?
                 <PersonalRouter
                   class="text-teal-400 font-semibold hover:text-violet-400"
@@ -103,15 +102,16 @@
           </form>
           <!-- CHECK SOCIALS -->
           <div
-            class="p-4 h-30 text-center right-0 left-0 flex flex-col justify-between pt-10 "
+            class="p-4 h-30 text-center right-0 left-0 flex flex-col justify-between pt-10"
           >
             <p class="font-extralight text-s">Like this? Check this out!</p>
             <div
-              class="p-4 w-full placeholder:text-center right-0 left-0 flex justify-center space-x-4 "
+              class="p-4 w-full placeholder:text-center right-0 left-0 flex justify-center space-x-4"
             >
               <a href="https://www.linkedin.com/in/monica-gonzalez-calleja">
                 <svg
                   fill="#fff"
+                  class="hover:fill-violet-400"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -125,6 +125,7 @@
               <a href="https://www.instagram.com/kazehime_/">
                 <svg
                   fill="#fff"
+                  class="hover:fill-violet-400"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -180,7 +181,10 @@ const signIn = async () => {
     redirect.push({ path: "/" });
   } catch (error) {
     // displays error message
-    errorMsg.value = error.message;
+    if(error.status === 400)
+      errorMsg.value = "Wrong password! (ノಠ益ಠ)ノ彡┻━┻";
+    else
+      errorMsg.value = "There's been an error （◞‸◟ ）";
     // hides error message
     setTimeout(() => {
       errorMsg.value = null;
@@ -189,28 +193,4 @@ const signIn = async () => {
 };
 </script>
 
-<style>
-/* .wu-text {
-  color: black;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 0;
-}
-.input {
-  color: black;
-  margin-bottom: 1rem;
-}
-.button {
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-} */
-</style>
+<style></style>

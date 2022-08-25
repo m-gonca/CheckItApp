@@ -1,29 +1,32 @@
 <template>
-  <Nav />
-  <div class="w-full">
-    <div
-      class="flex flex-col w-full h-full bg-no-repeat bg-cover bg-bottom"
-      style="
-        background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661359893/final%20project/02460614940ea24714c7dc28fc03438b_hskgnu.jpg);
-      "
-    >
-      <NewTask @new-task="addToDo" />
-      <div class="w-full flex flex-col items-center">
-      <div class="w-4/5  flex-wrap justify-between inline-flex gap-y-8 gap-x-10 mt-8 pt-8 pb-16">
-        <TaskItem
-          :task="task"
-          v-for="task in taskStore.tasks"
-          :key="task.id"
-          @childDelete="deleteToDo"
-          @childDone="toggleComplete"
-          @childEdit="editToDo"
-        />
+  <div class="flex flex-col justify-between h-screen border-2 border-red-700">
+    <Nav />
+    <div class="w-full h-full">
+      <div
+        class="flex flex-col w-full h-full bg-no-repeat bg-cover bg-bottom"
+        style="
+          background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661359893/final%20project/02460614940ea24714c7dc28fc03438b_hskgnu.jpg);
+        "
+      >
+        <NewTask @new-task="addToDo" />
+        <div class="w-full flex flex-col items-center">
+          <div
+            class="w-4/5 flex-wrap justify-between inline-flex gap-y-8 gap-x-10 mt-8 pt-8 pb-16"
+          >
+            <TaskItem
+              :task="task"
+              v-for="task in taskStore.tasks"
+              :key="task.id"
+              @childDelete="deleteToDo"
+              @childDone="toggleComplete"
+              @childEdit="editToDo"
+            />
+          </div>
+        </div>
       </div>
-      </div>
-
     </div>
+    <Footer />
   </div>
-  <Footer />
 </template>
 
 <script setup>

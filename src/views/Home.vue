@@ -4,7 +4,7 @@
     <div
       class="flex-auto flex-col w-full bg-no-repeat bg-cover bg-bottom"
       style="
-        background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661359893/final%20project/02460614940ea24714c7dc28fc03438b_hskgnu.jpg);
+        background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661440928/final%20project/02460614940ea24714c7dc28fc03438b_ifxyk1.jpg);
       "
     >
       <NewTask @new-task="addToDo" />

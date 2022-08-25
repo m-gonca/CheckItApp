@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Auth from "../views/Auth.vue";
 import Home from "../views/Home.vue";
+import Clock from "../views/Clock.vue";
+import Pomodoro from "../views/Pomodoro.vue";
+import Calendar from "../views/Calendar.vue";
 import SignIn from "../components/SignIn.vue";
 import SignUp from "../components/SignUp.vue";
 
@@ -14,6 +17,9 @@ const routes = [
     ],
   },
   { path: "/", component: Home },
+  { path: "/clock", component: Clock },
+  { path: "/pomodoro", component: Pomodoro },
+  { path: "/calendar", component: Calendar },
 ];
 const router = createRouter({
   history: createWebHistory(),

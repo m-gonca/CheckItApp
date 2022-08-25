@@ -1,26 +1,29 @@
 <template>
   <div class="py-20 flex flex-col items-center gap-20 bg-opacity-75">
     <div class="w-full flex flex-col gap-4 text-center">
-      <h1 class="self-center text-4xl font-light text-white">Wellcome back</h1>
-      <h1 class="self-center text-4xl font-semibold text-teal-400">{{ name[0] }}</h1>
+      <h1 class="self-center text-4xl font-light text-white">Welcome back</h1>
+      <h1 class="self-center text-4xl font-semibold text-teal-400">
+        {{ name[0] }}
+      </h1>
     </div>
 
     <div class="w-1/2 flex flex-col bg-teal-200/20 rounded-xl">
       <p class="my-4 font-normal text-center text-white">
         Have anything to do?
       </p>
-
       <!-- FORM -->
-
       <div v-if="showAddForm">
-        <form @submit.prevent="newTaskEmit" class="grid gap-4 mb-8">
+        <form
+          @submit.prevent="newTaskEmit"
+          class="grid gap-4 mb-8 w-4/5 m-auto"
+        >
           <div class="flex justify-between">
             <input
               type="text"
               maxlength="200"
               placeholder="task title"
               v-model="taskTitle"
-              class="bg-teal-100 w-full"
+              class="bg-teal-100 w-full rounded-xl px-2 py-1"
             />
           </div>
           <div class="flex justify-between">
@@ -30,7 +33,7 @@
               rows="3"
               placeholder="task description"
               v-model="taskDescription"
-              class="bg-teal-100 w-full"
+              class="bg-teal-100 w-full rounded-xl px-2 py-1"
             />
           </div>
 
@@ -44,23 +47,27 @@
           <input
             type="submit"
             value="Save Task"
-            class="bg-teal-400 text-white rounded-xl hover:bg-violet-400 my-2 pt-2 pb-2 pl-4 pr-4"
+            class="bg-teal-400 text-white font-semibold rounded-xl hover:bg-violet-400 my-2 pt-2 pb-2 pl-4 pr-4"
           />
         </form>
       </div>
-      <button
-        @click="showAddTask"
-        class="text-white text-sm font-medium bg-teal-400 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center mr-0"
+      <div
+        class="w-full bg-teal-100/50 py-4 text-center items-center flex flex-col md:flex-row md:px-5 gap-5 justify-center rounded-b-lg"
       >
-        <p v-if="!showAddForm">Add it to the list!</p>
-        <p v-else>Close this</p>
-      </button>
+        <button
+          @click="showAddTask"
+          class="text-white font-semibold bg-teal-400 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center"
+        >
+          <p v-if="!showAddForm">Add it to the list!</p>
+          <p v-else>Close this</p>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 // import moment from "moment";
 import { useUserStore } from "../stores/user";
 

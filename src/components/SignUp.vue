@@ -156,7 +156,7 @@ import { useUserStore } from "../stores/user";
 import { storeToRefs } from "pinia";
 
 // Route Variables
-const route = "/auth/login";
+const route = "/auth";
 const buttonText = "Sign In!";
 
 // Input Fields
@@ -190,7 +190,7 @@ const signUp = async () => {
       // calls the user store and send the users info to backend to logIn
       await useUserStore().signUp(email.value, password.value);
       // redirects user to the homeView
-      redirect.push({ path: "/auth/login" });
+      redirect.push({ path: "/auth" });
     } catch (error) {
       // displays error message
       errorMsg.value = "There's been an error （◞‸◟ ）";

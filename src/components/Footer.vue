@@ -4,7 +4,6 @@
   >
     <div class="sm:flex sm:items-center sm:justify-between">
       <div class="text-center">
-        <!-- <h1>hola</h1> -->
         © 2022
         <a
           href="https://www.linkedin.com/in/monica-gonzalez-calleja"

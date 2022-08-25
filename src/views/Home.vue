@@ -1,28 +1,22 @@
 <template>
-  <div class="flex flex-col justify-between h-screen border-2 border-red-700">
+  <div class="flex flex-col justify-between h-screen">
     <Nav />
-    <div class="w-full h-full">
-      <div
-        class="flex flex-col w-full h-full bg-no-repeat bg-cover bg-bottom"
-        style="
-          background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661359893/final%20project/02460614940ea24714c7dc28fc03438b_hskgnu.jpg);
-        "
-      >
-        <NewTask @new-task="addToDo" />
-        <div class="w-full flex flex-col items-center">
-          <div
-            class="w-4/5 flex-wrap justify-between inline-flex gap-y-8 gap-x-10 mt-8 pt-8 pb-16"
-          >
-            <TaskItem
-              :task="task"
-              v-for="task in taskStore.tasks"
-              :key="task.id"
-              @childDelete="deleteToDo"
-              @childDone="toggleComplete"
-              @childEdit="editToDo"
-            />
-          </div>
-        </div>
+    <div
+      class="flex-auto flex-col w-full bg-no-repeat bg-cover bg-bottom"
+      style="
+        background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661359893/final%20project/02460614940ea24714c7dc28fc03438b_hskgnu.jpg);
+      "
+    >
+      <NewTask @new-task="addToDo" />
+      <div class="w-4/5 m-auto flex flex-row flex-wrap gap-y-10 mb-20">
+        <TaskItem
+          :task="task"
+          v-for="task in taskStore.tasks"
+          :key="task.id"
+          @childDelete="deleteToDo"
+          @childDone="toggleComplete"
+          @childEdit="editToDo"
+        />
       </div>
     </div>
     <Footer />
@@ -82,13 +76,7 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.glow {
-  -webkit-box-shadow: 0 0 20px rgba(2, 2, 2, 0.503);
-  -moz-box-shadow: 0 0 20px rgba(2, 2, 2, 0.503);
-  box-shadow: 0 -20px 15px 10px rgba(2, 2, 2, 0.3);
-}
-</style>
+<style scoped></style>
 
 <!-- 
 **Hints**

@@ -1,6 +1,6 @@
 <template>
   <Nav />
-  <body class="w-full">
+  <div class="w-full">
     <div
       class="flex flex-col w-full h-full bg-no-repeat bg-cover bg-bottom"
       style="
@@ -8,7 +8,8 @@
       "
     >
       <NewTask @new-task="addToDo" />
-      <div class="flex flex-wrap justify-around py-10  bg-black/50">
+      <div class="w-full flex flex-col items-center">
+      <div class="w-4/5  flex-wrap justify-between inline-flex gap-y-8 gap-x-10 mt-8 pt-8 pb-16">
         <TaskItem
           :task="task"
           v-for="task in taskStore.tasks"
@@ -18,31 +19,11 @@
           @childEdit="editToDo"
         />
       </div>
+      </div>
+
     </div>
-    
-  </body>
+  </div>
   <Footer />
-  <!-- <body class="w-full border-2 border-red-300 flex flex-col">
-    <div
-      class="flex flex-col lg:flex-row w-full border-2 "
-      style="
-        background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129745/final%20project/02460614940ea24714c7dc28fc03438b_vpkhdu.jpg);
-      "
-    >
-      <NewTask @new-task="addToDo" />
-      <div class="lg:w-3/5 flex flex-wrap justify-around border-2 border-green-700 bg-black/50">
-        <TaskItem
-          :task="task"
-          v-for="task in taskStore.tasks"
-          :key="task.id"
-          @childDelete="deleteToDo"
-          @childDone="toggleComplete"
-          @childEdit="editToDo"
-        />
-      </div>
-    </div>
-    <Footer />
-  </body> -->
 </template>
 
 <script setup>
@@ -98,7 +79,13 @@ onMounted(() => {
 });
 </script>
 
-<style></style>
+<style scoped>
+.glow {
+  -webkit-box-shadow: 0 0 20px rgba(2, 2, 2, 0.503);
+  -moz-box-shadow: 0 0 20px rgba(2, 2, 2, 0.503);
+  box-shadow: 0 -20px 15px 10px rgba(2, 2, 2, 0.3);
+}
+</style>
 
 <!-- 
 **Hints**

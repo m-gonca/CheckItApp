@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="relative bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 shadow-lg"
+    class="relative bg-white px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 shadow-lg"
   >
     <span
       class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 shadow-gradient-to-r"
@@ -17,7 +17,7 @@
             alt="logo"
           />
           <span
-            class=" items-center sm:text-3xl text-xl font-semibold whitespace-nowrap dark:text-white"
+            class=" items-center sm:text-3xl text-xl text-teal-400 font-semibold whitespace-nowrap dark:text-white"
             >Check it</span
           >
         </router-link>

@@ -56,13 +56,13 @@
                 id="email"
                 placeholder="Email"
                 v-model="email"
-                class="block w-full p-4 text-lg rounded-sm bg-black"
+                class="block w-full p-4 text-lg rounded-full pl-8 bg-black"
                 required
               />
             </div>
             <div class="pb-2 pt-4">
               <input
-                class="block w-full p-4 text-lg rounded-sm bg-black"
+                class="block w-full p-4 text-lg rounded-full pl-8 bg-black"
                 type="password"
                 name="password"
                 id="password"

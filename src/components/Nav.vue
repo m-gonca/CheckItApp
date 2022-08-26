@@ -8,7 +8,7 @@
 
     <div class="flex flex-wrap justify-between items-center mx-auto">
       <!-- LEFT SIDE -->
-      <div class=" flex ">
+      <div class="flex">
         <!-- LOGO -->
         <router-link to="/" class="flex items-center">
           <img
@@ -17,7 +17,7 @@
             alt="logo"
           />
           <span
-            class=" items-center sm:text-3xl text-xl text-teal-400 font-semibold whitespace-nowrap dark:text-white"
+            class="items-center sm:text-3xl text-xl text-teal-400 font-semibold whitespace-nowrap dark:text-white"
             >Check it</span
           >
         </router-link>
@@ -30,17 +30,33 @@
             class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-m md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
           >
             <li>
-              <router-link to="/" class="block py-2 pr-4 pl-3 text-white bg-teal-600 rounded md:bg-transparent md:text-teal-600 md:p-0 dark:text-white"
-                aria-current="page">Home</router-link>
+              <router-link
+                to="/"
+                class="block py-2 pr-4 pl-3 text-white bg-teal-600 rounded md:bg-transparent md:text-teal-600 md:p-0 dark:text-white"
+                aria-current="page"
+                >Home</router-link
+              >
             </li>
             <li>
-              <router-link to="/clock" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-600 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Clock</router-link>
+              <router-link
+                to="/clock"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-600 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Clock</router-link
+              >
             </li>
             <li>
-             <router-link to="/pomodoro" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-600 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pomodoro</router-link>
+              <router-link
+                to="/pomodoro"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-600 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Pomodoro</router-link
+              >
             </li>
             <li>
-              <router-link to="/calendar" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-600 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Calendar</router-link>
+              <router-link
+                to="/calendar"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-600 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Calendar</router-link
+              >
             </li>
           </ul>
         </div>
@@ -64,28 +80,48 @@
           Log out
         </button>
         <!-- NAV BAR OPTIONS FOR MOBILE: HAMBURGUER MENU -->
-        <button
-          data-collapse-toggle="navbar-cta"
-          type="button"
-          class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-cta"
-          aria-expanded="false"
-        >
-          <span class="sr-only">Open main menu</span>
-          <svg
-            class="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+
+        <div class="block md:hidden">
+          <button
+            @click="changeClickBurger"
+            class="w-[40px] h-[40px] border-0 flex flex-col justify-center content-center bg-none"
           >
-            <path
-              fill-rule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-        </button>
+            <span
+              class="w-[30px] h-[4px] mb-[5px] relative bg-teal-600 transition ease-in-out delay-300 duration-500 active:transform active:rotate-45 active:top-[5px]"
+            ></span>
+            <span
+              class="w-[30px] h-[4px] mb-[5px] relative bg-teal-600 transition ease-in-out delay-300 duration-500 active:hidden"
+            ></span>
+            <span
+              class="w-[30px] h-[4px] mb-[5px] relative bg-teal-600 transition ease-in-out delay-300 duration-500 active:transform active:-rotate-45 active:bottom-[5px]"
+            ></span>
+          </button>
+
+          <nav
+            :class="clickBurger ? 'top-[15px]' : 'hidden'"
+            class="bg-teal-200/80 absolute left-0 w-full mt-[40px] z-[50] transition ease-in-out duration-300"
+          >
+            <ul
+              class="flex flex-col items-center bg-teal-600/50 list-none text-white py-2 divide-y"
+            >
+              <li class="p-2 text-lg font-semibold">
+                <router-link to="/">Home</router-link>
+              </li>
+
+              <li class="p-2 text-lg font-semibold">
+                <router-link to="/clock">Clock</router-link>
+              </li>
+
+              <li class="p-2 text-lg font-semibold">
+                <router-link to="/pomodoro">Pomodoro</router-link>
+              </li>
+
+              <li class="p-2 text-lg font-semibold">
+                <router-link to="/calendar">Calendar</router-link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </nav>
@@ -107,6 +143,14 @@ const time = moment().format("Do MMMM YYYY");
 // const route = "/";
 // constant to save a variable that will get the user from store with a computed function imported from vue
 const userStore = useUserStore();
+
+//hamburguer menu
+
+const clickBurger = ref(false);
+
+const changeClickBurger = () => {
+  clickBurger.value = !clickBurger.value;
+};
 
 // async function that calls the signOut method from the useUserStore and pushes the user back to the Auth view.
 const redirect = useRouter();

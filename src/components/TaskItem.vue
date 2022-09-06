@@ -95,7 +95,7 @@
         >
           Edit
         </button>
-        <button
+         <button
           @click="deleteTask"
           class="w-4/5 rounded-xl bg-teal-400 px-6 py-2 font-semibold text-white shadow-md duration-75 hover:bg-red-400 relative"
         >
@@ -109,6 +109,7 @@
 
 <script setup>
 import { ref } from "vue";
+import Swal from 'sweetalert2'
 
 //constants to save the variable that holds the value
 //of the title and description from the edit inputs
@@ -137,11 +138,34 @@ const props = defineProps(["task"]);
 
 //function to emit de deletefunction if confirmed and
 //passes with it the task.id inside the prop
-const deleteTask = () => {
-  if (confirm("are u sure u want to delete?")) {
-    console.log(props.task.id);
+
+//old way with ugly alert
+// const deleteTask = () => {
+//   if (confirm("are u sure u want to delete?")) {
+//     console.log(props.task.id);
+//     emit("childDelete", props.task.id);
+//   }
+// };
+
+const deleteTask = ()=>{
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
     emit("childDelete", props.task.id);
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
   }
+})
 };
 
 //function that emits the childDone emit to update the tick sign

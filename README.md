@@ -27,7 +27,7 @@
 ## Technologies
 
 - Vite for app building
-- Vue.js for the feature's development
+- Vue.js for the features' development
 - Tailwind for styling
 - Pinia for stage management
 - Supabase as database

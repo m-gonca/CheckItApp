@@ -2,25 +2,11 @@
   <br>
   <a href="https://check-it-app.vercel.app/"><img src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129610/final%20project/Recurso_12_yu4gbt.png" alt="Check it" width="200"></a>
   <br>
-  Check it. ✓
+  Check it.
   <br>
 </h1>
 
 <h4 align="center">Your lo-fi task app to go, built on <a href="https://vuejs.org/" target="_blank">Vue</a> as Ironhack Frontend Bootcamp's final project.</h4>
-
-<p align="center">
-  <a href="https://badge.fury.io/js/electron-markdownify">
-    <img src="https://badge.fury.io/js/electron-markdownify.svg"
-         alt="Gitter">
-  </a>
-  <a href="https://gitter.im/amitmerchant1990/electron-markdownify"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
-  <a href="https://saythanks.io/to/bullredeyes@gmail.com">
-      <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
-  </a>
-  <a href="https://www.paypal.me/AmitMerchant">
-    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
-  </a>
-</p>
 
 <p align="center">
 	<a href="#key-features">Key Features</a> •

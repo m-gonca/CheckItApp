@@ -5,7 +5,7 @@
       class="h-full flex flex-col justify-between items-center hover:scale-105 hover:shadow-xl duration-300 shadow-md overflow-hidden bg-teal-200/30 rounded-xl mx-5 relative"
     >
       <div class="absolute">
-        <!-- WORKING ON IT/DONE ICON -->
+        <!-- WORKING ON IT ICON -->
         <svg
           v-if="doneBoolean"
           xmlns="http://www.w3.org/2000/svg"
@@ -109,10 +109,9 @@
 
 <script setup>
 import { ref } from "vue";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
-//constants to save the variable that holds the value
-//of the title and description from the edit inputs
+//constants to save the variable that holds the value of the title and description from the edit inputs
 const taskTitle = ref("");
 const taskDescription = ref("");
 
@@ -128,16 +127,13 @@ const errorMsg = ref("");
 //boolean to toggle the display of the edit inputs
 const showEditBar = ref("");
 
-//we define the emits that are passed on to the father and that
-//we are going to use to trigger the different functionalities
+//we define the emits that are passed on to the father and that we are going to use to trigger the different functionalities
 const emit = defineEmits(["childDelete", "childDone", "childEdit"]);
 
-//we define here the prop that is going to be used
-//in the father to store each task from the array
+//we define here the prop that is going to be used in the father to store each task from the array
 const props = defineProps(["task"]);
 
-//function to emit de deletefunction if confirmed and
-//passes with it the task.id inside the prop
+//function to emit de deletefunction if confirmed and passes with it the task.id inside the prop
 
 //old way with ugly alert
 // const deleteTask = () => {
@@ -168,9 +164,8 @@ const deleteTask = ()=>{
 })
 };
 
-//function that emits the childDone emit to update the tick sign
-//in home. To know from which task, it passes with it the
-//task.id inside the prop
+//function that emits the childDone emit to update the tick sign in home. To know from which task, it passes with it the task.id inside the prop
+
 const doneTask = (id) => {
   emit("childDone", props.task.id);
   doneBoolean.value = !doneBoolean.value;
@@ -184,9 +179,7 @@ const showEdit = () => {
   taskDescription.value =  props.task.description;
 };
 
-//function to edit a task's title and description. We will
-//have to create an object with the object's id and the
-//title and description value coming from the edit inputs
+//function to edit a task's title and description. We will have to create an object with the object's id and the title and description value coming from the edit inputs
 const editTask = () => {
   if (taskTitle.value.length === 0 || taskDescription.value.length === 0) {
     errorMsg.value = "What's the task you wanna save ?(-ᴥ-ʋ)";

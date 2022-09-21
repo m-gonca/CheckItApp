@@ -71,6 +71,14 @@
           <h3 class="font-medium">{{ time }}</h3>
         </div>
 
+        <!-- PROFILE PIC -->
+        <router-link
+          to="/profile"
+          class="block py-2 pr-4 pl-3 text-white bg-teal-600 rounded md:bg-transparent md:text-teal-600 md:p-0 dark:text-white"
+          aria-current="page"
+          ><img :src="avatarPath" alt="profile-pic"></router-link
+        >
+
         <!-- LOG OUT BUTTON -->
         <button
           type="button"
@@ -139,11 +147,17 @@ import moment from "moment";
 
 const time = moment().format("Do MMMM YYYY");
 
-//constant to save a variable that will hold the use router method
-// const route = "/";
 // constant to save a variable that will get the user from store with a computed function imported from vue
 const userStore = useUserStore();
 
+// console.log("llamadas del nav");
+// userStore.fetchUser();
+// userStore.getProfile();
+// console.log("final llamadas del nav");
+
+
+const avatarPath = userStore.user.avatar_url;
+console.log(avatarPath);
 //hamburguer menu
 
 const clickBurger = ref(false);

@@ -3,7 +3,7 @@
     <div class="w-full flex flex-col gap-4 text-center">
       <h1 class="self-center text-4xl font-light text-white">Welcome back</h1>
       <h1 class="self-center text-4xl font-semibold text-teal-400">
-        {{ name[0] }}
+        {{ username }}
       </h1>
     </div>
 
@@ -67,18 +67,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-// import moment from "moment";
+import { ref, onMounted } from "vue";
 import { useUserStore } from "../stores/user";
 
 // constant to save a variable that will get the user from store with a computed function imported from vue
 const userStore = useUserStore();
 
-// constant that calls user email from the useUSerStore
-const email = userStore.user.email;
 
-// constant that saves the user email and cleans out the @client from the user
-const name = email.split("@");
+
+//constant to save the username
+// const username = userStore.user.username;
+const username = ref("");
+console.log("hola");
+console.log(userStore.user.username);
 
 // constant to save a variable that holds the value of the title input field of the new task
 const taskTitle = ref("");
@@ -94,9 +95,6 @@ const errorMsg = ref("");
 
 //boolean to toggle the display of the edit inputs
 const showAddForm = ref("");
-
-// const where I can save the date
-// const time = moment().format("Do MMMM YYYY, h:mm:ss a");
 
 // constant to save a variable that defines the custom event that will be emitted to the homeView
 const emit = defineEmits(["new-task"]);
@@ -126,6 +124,16 @@ const newTaskEmit = () => {
 const showAddTask = () => {
   showAddForm.value = !showAddForm.value;
 };
+
+
+//calling the user and profile to get the username in the user store
+
+onMounted(() => {
+  userStore.fetchUser();
+  userStore.getProfile();
+  username.value = userStore.user.username;
+});
+
 </script>
 
 <style></style>

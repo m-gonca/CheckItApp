@@ -1,96 +1,119 @@
-# FINAL PROJECT
+<h1 align="center">
+  <br>
+  <a href="https://check-it-app.vercel.app/"><img src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1661129610/final%20project/Recurso_12_yu4gbt.png" alt="Check it" width="200"></a>
+  <br>
+  Check it. ✓
+  <br>
+</h1>
 
-✓ This final project consists on creating a task app ✓ 
+<h4 align="center">Your lo-fi task app to go, built on <a href="https://vuejs.org/" target="_blank">Vue</a> as Ironhack Frontend Bootcamp's final project.</h4>
 
-Technologies used:
--Vue.js
--Tailwind
--Pinia
--Supabase
+<p align="center">
+  <a href="https://badge.fury.io/js/electron-markdownify">
+    <img src="https://badge.fury.io/js/electron-markdownify.svg"
+         alt="Gitter">
+  </a>
+  <a href="https://gitter.im/amitmerchant1990/electron-markdownify"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
+  <a href="https://saythanks.io/to/bullredeyes@gmail.com">
+      <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
+  </a>
+  <a href="https://www.paypal.me/AmitMerchant">
+    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
+  </a>
+</p>
 
-# 21-08-2022
-First added features are the sign in and sign up in the home view. They are functionable 
-and allow the creation of new users with password confirmation and confirmation email. Logins are available and 
-require always a password.
-A simple navbar has been added with a router link with a logo, a salute with the username and a signout button.
+<p align="center">
+	<a href="#key-features">Key Features</a> •
+	<a href="#key-features">Technologies</a> •
+	<a href="#key-features">Timeline</a>
+</p>
 
-# 22-08-2022
-Next, the newTask component was created to introduce a form in which the user will be able to push her/his tasks.
-Logic to introduce tasks inside supabase has been added, by using a fetch through a store created with Pinia.
-Still, tasks don't appear in realtime on the screen.
- 
-# 23-08-2022
-Full logic of the page has been completed.
-New tasks now appear by using a fetch after each modification. 
-TaskItem component is fully functional and is deletable, editable and can be toggled to show it is completed.
-CRUD principles are all functionable through the pinia taskStore, and are displayed thanks to different fetchs 
-from the Supabase's task table. This way we don't need to update the array with methods like filter or map.
-A clock function has been added that still needs to be updated to make it realtime.
+## Key Features
 
-# 24-08-2022
-
-Creation of footer, full styling of sign in, sign up, home, navbar, footer, newTask and taskItem. Redistribution of 
-some features like the date.
-
-
-------setup stuff -------
-
-## Important
-This app is not setUp to be deployed to a production environment like vercel or netlify. 
-
-Friday on August 19 we will look at how can we deploy this app to Vercels ecosystem.
+- Sign in, sign up and sign out functionalities
+- Create tasks and upload them to the database
+- Read tasks and show them in the front page
+- Update tasks easily by clicking on edit button
+- Delete tasks from page and database
+- Nice easy-to-use and chill UX-UI
 
 
-## Project Setup
+## Technologies
 
-```sh
-npm install
+- Vite for app building
+- Vue.js for the feature's development
+- Tailwind for styling
+- Pinia for stage management
+- Supabase as database
+
+
+## Timeline
+
+<details><summary><b>Display Timeline</b></summary>
+
+
+### Friday 19/08
+
+```
+Project Structure:
+
+ - Stablishing main functionalities
+ - Creation of sign in - sign up components linked to Supabase
+ - Start basic styling with Tailwind on mobile format
+
 ```
 
-## Set Up your Environment Variables from Supabase located at the root folder of the project
+### Monday 22/08
 
-```sh
-VITE_SUPABASE_URL
-VITE_SUPABASE_ANON_KEY 
 ```
-#### Once you have added your environment variables, head to your .gitIgnore file located at the root folder and uncomment the .env file naming to avoid sharing any private access keys to your database
+ - Creation of new task component to push user's tasks
+ - Connection to Supabase stablished
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
 ```
 
-### Compile and Minify for Production
+### Tuesday 23/08
 
-```sh
-npm run build
+```
+ - Frontend update with new tasks showing on home page
+ - Edit button added and linked to database
+ - Done/undone toggle button updated and linked to database
+ - Delete button created ands linked to database
+ - Start of UX-UI design
+
 ```
 
-### Good Music is always key!
+### Wednesday 24/08
 
-```sh
-Wu Tang Clan
-A tribe called quest
-Kendrick Lamar
-Outkast
-Dr. Dre
-N.W.A
-De La Soul 
-Ms. Lauryn Hill
-J. Cole 
-Guts
-Naughty By Nature
-People under the stairs
-Nujabes
-NAS
-KRS-One
-The Pharcyde
-Jurassic 5
-Gang starr
-Jay Z
-Mobb Depp
-Common
-Lil Supa
 ```
-[Hip Hop Spotify Playlist](https://open.spotify.com/playlist/4vKftyhS1gQovakehVcq1u?si=a7a119382dfe40da)
+ - Follow up on UX-UI design
+ - Full responsiveness for laptop with Tailwind
+ - Debugging
+ - Review 1-on-1 with Teacher
+
+```
+
+### Thursday 25/08
+
+```
+ - Deployment of the Site with Vercel
+ - Clock component linked to view in navbar
+ - Views with the Router Link for upcoming Pomodoro and Calendar features
+ - Hamburguer menu with new router views
+ - Footer created
+
+```
+
+### Friday 26/08
+
+```
+ - Preparing upcoming presentation
+ - Final presentation
+ - Give and receive Feedback to/from peers
+
+```
+  </details>
+
+---
+
+> GitHub [@m-gonca](https://github.com/m-gonca) &nbsp;&middot;&nbsp;
+> LinkedIn [Mónica González Calleja](https://www.linkedin.com/in/monica-gonzalez-calleja/)

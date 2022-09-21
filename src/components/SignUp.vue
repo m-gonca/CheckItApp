@@ -20,7 +20,9 @@
             Check it. ✓
           </h1>
         </div>
-        <p class="absolute bottom-1 left-2 text-gray-500/50">Art by @waneella</p>
+        <p class="absolute bottom-1 left-2 text-gray-500/50">
+          Art by @waneella
+        </p>
       </div>
       <!-- SIGN UP -->
       <div
@@ -51,6 +53,17 @@
           >
             <div class="pb-2 pt-4">
               <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Nickname"
+                v-model="username"
+                class="block w-full p-4 text-lg rounded-full pl-8 bg-black"
+                required
+              />
+            </div>
+            <div class="pb-2 pt-4">
+              <input
                 type="email"
                 name="email"
                 id="email"
@@ -75,8 +88,8 @@
               <input
                 class="block w-full p-4 text-lg rounded-full pl-8 bg-black"
                 type="password"
-                name="password"
-                id="password"
+                name="confirmPassword"
+                id="confirmPassword"
                 placeholder="Confirm password"
                 v-model="confirmPassword"
                 required
@@ -90,7 +103,12 @@
                 sign up
               </button>
               <!-- ERROR MESSAGE -->
-              <p v-show="errorMsg" class="w-full text-red-400 bg-violet-500/50 mt-5 p-2 rounded-full">{{ errorMsg }}</p>
+              <p
+                v-show="errorMsg"
+                class="w-full text-red-400 bg-violet-500/50 mt-5 p-2 rounded-full"
+              >
+                {{ errorMsg }}
+              </p>
               <!-- LINK TO SIGN IN -->
               <p class="text-gray-100 mt-5">
                 Already have an account?
@@ -104,11 +122,11 @@
           </form>
           <!-- CHECK SOCIALS -->
           <div
-            class="p-4 h-30 text-center right-0 left-0 flex flex-col justify-between pt-10 "
+            class="p-4 h-30 text-center right-0 left-0 flex flex-col justify-between pt-10"
           >
             <p class="font-extralight text-s">Like this? Check this out!</p>
             <div
-              class="p-4 w-full placeholder:text-center right-0 left-0 flex justify-center space-x-4 "
+              class="p-4 w-full placeholder:text-center right-0 left-0 flex justify-center space-x-4"
             >
               <a href="https://www.linkedin.com/in/monica-gonzalez-calleja">
                 <svg
@@ -140,7 +158,9 @@
               </a>
             </div>
           </div>
-          <p class="absolute lg:hidden bottom-1 left-2 text-gray-500/50">Art by @waneella</p>
+          <p class="absolute lg:hidden bottom-1 left-2 text-gray-500/50">
+            Art by @waneella
+          </p>
         </div>
       </div>
     </section>
@@ -154,6 +174,7 @@ import { supabase } from "../supabase";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/user";
 import { storeToRefs } from "pinia";
+import Swal from "sweetalert2";
 
 // Route Variables
 const route = "/auth";
@@ -161,6 +182,7 @@ const buttonText = "Sign In!";
 
 // Input Fields
 
+const username = ref("");
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
@@ -188,7 +210,19 @@ const signUp = async () => {
   if (password.value === confirmPassword.value) {
     try {
       // calls the user store and send the users info to backend to logIn
-      await useUserStore().signUp(email.value, password.value);
+      await useUserStore().signUp(email.value, password.value, username.value);
+      Swal.fire({
+        icon: "success",
+        iconColor: "#2ec4b6",
+        title: "Check up your e-mail!",
+        position: "center",
+        showConfirmButton: false,
+        timer: 3000,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
       // redirects user to the homeView
       redirect.push({ path: "/auth" });
     } catch (error) {
@@ -203,8 +237,8 @@ const signUp = async () => {
   }
   errorMsg.value = "Passwords are not the same (ಠ_ʖಠ)";
   setTimeout(() => {
-        errorMsg.value = null;
-      }, 5000);
+    errorMsg.value = null;
+  }, 5000);
 };
 </script>
 

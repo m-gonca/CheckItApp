@@ -48,7 +48,7 @@ export default {
     console.log(path.value);
     const downloadImage = async () => {
       try {
-        console.log(path.value);
+        // console.log(path.value);
         const { data, error } = await supabase.storage
           .from("avatars")
           .download(path.value);

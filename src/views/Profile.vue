@@ -88,6 +88,7 @@ const getUser = async () => {
   try {
     loading.value = true;
     await useUserStore().getProfile();
+    newAvatar.value = userStore.user.avatar_url;
     loading.value = false;
   } catch (error) {
     errorMsg.value = "There's been an error getting your profile（◞‸◟ ）";
@@ -119,9 +120,7 @@ const updateData = async () => {
   }
 };
 
-onMounted(async() => {
-  await userStore.getProfile();
-  newAvatar.value = userStore.user.avatar_url;
-  console.log("este es el new avatar", newAvatar);
+onMounted(() => {
+  getUser();
 });
 </script>

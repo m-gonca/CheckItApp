@@ -76,8 +76,19 @@
           to="/profile"
           class="block py-2 pr-4 pl-3 text-white bg-teal-600 rounded md:bg-transparent md:text-teal-600 md:p-0 dark:text-white"
           aria-current="page"
-          ><img :src="avatarPath" alt="profile-pic"></router-link
         >
+          <img
+            v-if="avatarPath"
+            :src="avatarPath"
+            alt="profile-pic"
+            class="h-40 w-40 rounded-full border-5"
+          />
+          <img
+            v-else
+            src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1663600832/final%20project/basicprofile_jy2efd.png"
+            class="h-10 w-10 rounded-full"
+          />
+        </router-link>
 
         <!-- LOG OUT BUTTON -->
         <button
@@ -136,23 +147,37 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { supabase } from "../supabase";
 import { useUserStore } from "../stores/user";
-import { storeToRefs } from "pinia";
 import moment from "moment";
 
 const userStore = useUserStore();
 const time = moment().format("Do MMMM YYYY");
 const avatarPath = ref("");
 const clickBurger = ref(false);
+const redirect = useRouter();
+const errorMsg = ref("");
 
 const changeClickBurger = () => {
   clickBurger.value = !clickBurger.value;
 };
 
-const redirect = useRouter();
+const getUser = async () => {
+  try {
+    loading.value = true;
+    await useUserStore().getProfile();
+    avatarPath.value = userStore.user.avatar_url;
+    loading.value = false;
+  } catch (error) {
+    errorMsg.value = "There's been an error getting your profile（◞‸◟ ）";
+    setTimeout(() => {
+      errorMsg.value = null;
+    }, 5000);
+  }
+};
+
 const signOut = async () => {
   try {
     await useUserStore().signOut();
@@ -165,9 +190,10 @@ const signOut = async () => {
   }
 };
 
-onMounted(async()=>{
-  await userStore.getProfile();
-  avatarPath.value = userStore.user.avatar_url;
+onMounted(() => {
+  getUser();
+  // await userStore.getProfile();
+  // avatarPath.value = userStore.user.avatar_url;
   console.log(avatarPath.value);
 });
 </script>

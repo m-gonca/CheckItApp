@@ -24,7 +24,6 @@ export const useUserStore = defineStore("user", {
       if (error) throw error;
       if (user) {
         this.user = user;
-        console.log(this.user);
       }
     },
 
@@ -41,7 +40,6 @@ export const useUserStore = defineStore("user", {
       if (error) throw error;
       if (user) {
         this.user = user;
-        console.log(this.user);
       }
     },
 
@@ -60,15 +58,13 @@ export const useUserStore = defineStore("user", {
           .single();
 
         if (error && status !== 406) throw error;
-        console.log(data);
         if (data) {
           this.user.username = data.username;
           this.user.name = data.name;
           this.user.surname = data.surname;
           this.user.avatar_url = data.avatar_url;
         }
-        console.log("prueba dentro de la tienda");
-        console.log(this.user);
+        return this.user;
     },
 
     async updateProfile(updateObject) {

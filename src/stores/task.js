@@ -48,7 +48,6 @@ export const useTaskStore = defineStore("tasks", {
           title: title, 
           description: description })
         .match({ id: id });
-
     },
   },
 });

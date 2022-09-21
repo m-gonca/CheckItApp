@@ -136,53 +136,40 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { supabase } from "../supabase";
 import { useUserStore } from "../stores/user";
 import { storeToRefs } from "pinia";
 import moment from "moment";
 
-// const where I can save the date
-
-const time = moment().format("Do MMMM YYYY");
-
-// constant to save a variable that will get the user from store with a computed function imported from vue
 const userStore = useUserStore();
-
-// console.log("llamadas del nav");
-// userStore.fetchUser();
-// userStore.getProfile();
-// console.log("final llamadas del nav");
-
-
-const avatarPath = userStore.user.avatar_url;
-console.log(avatarPath);
-//hamburguer menu
-
+const time = moment().format("Do MMMM YYYY");
+const avatarPath = ref("");
 const clickBurger = ref(false);
 
 const changeClickBurger = () => {
   clickBurger.value = !clickBurger.value;
 };
 
-// async function that calls the signOut method from the useUserStore and pushes the user back to the Auth view.
 const redirect = useRouter();
 const signOut = async () => {
   try {
-    // calls the user store and signs out
     await useUserStore().signOut();
-    // redirects user to the auth login
     redirect.push({ path: "/auth" });
   } catch (error) {
-    // displays error message
     errorMsg.value = error.message;
-    // hides error message
     setTimeout(() => {
       errorMsg.value = null;
     }, 5000);
   }
 };
+
+onMounted(async()=>{
+  await userStore.getProfile();
+  avatarPath.value = userStore.user.avatar_url;
+  console.log(avatarPath.value);
+});
 </script>
 
 <style></style>

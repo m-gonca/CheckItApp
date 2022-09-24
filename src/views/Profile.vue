@@ -104,8 +104,6 @@ const uploadAvatar = async (evt) => {
 
     //le decimos que la descargue para actualizarla
     await userStore.downloadImage(filePath);
-    // const update = {avatar_url = }
-    // await userStore.updateProfile()
 
   } catch (error) {
     alert(error.message);

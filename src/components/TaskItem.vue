@@ -135,14 +135,6 @@ const props = defineProps(["task"]);
 
 //function to emit de deletefunction if confirmed and passes with it the task.id inside the prop
 
-//old way with ugly alert
-// const deleteTask = () => {
-//   if (confirm("are u sure u want to delete?")) {
-//     console.log(props.task.id);
-//     emit("childDelete", props.task.id);
-//   }
-// };
-
 const deleteTask = ()=>{
   Swal.fire({
   title: 'Are you sure?',

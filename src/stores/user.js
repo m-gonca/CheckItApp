@@ -13,14 +13,13 @@ export const useUserStore = defineStore("user", {
           .select(`username, name, surname, avatar_url`)
           .eq("id", user.id)
           .single();
-
       if (error && status !== 406) throw error;
       if (data) {
-          console.log("estoy en usestore y entre en get profile");
           this.user.username = data.username;
           this.user.name = data.name;
           this.user.surname = data.surname;
           this.user.avatar_url = data.avatar_url;
+          this.downloadImage(data.avatar_url);
       }
       return this.user;
     },
@@ -32,8 +31,8 @@ export const useUserStore = defineStore("user", {
           .download(path);
         if (error) throw error;
         if (data) {
-          this.user.avatar_url = URL.createObjectURL(data);
-          this.updateProfile({avatar_url: this.user.avatar_url});
+          this.user.avatar_url_temp = URL.createObjectURL(data);
+          this.updateProfile({avatar_url: path});
         }
       } catch (error) {
         console.error("Error downloading image: ", error.message);

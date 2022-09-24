@@ -31,7 +31,6 @@ import TaskItem from "../components/TaskItem.vue";
 import Footer from "../components/Footer.vue";
 import { useTaskStore } from "../stores/task";
 
-
 const taskStore = useTaskStore();
 
 const addToDo = async (newTask) => {
@@ -58,9 +57,7 @@ const editToDo = async (newTask) => {
   taskStore.fetchTasks();
 };
 
-onMounted(() => {
-  taskStore.fetchTasks();
+onMounted(async() => {
+  await taskStore.fetchTasks();
 });
 </script>
-
-<style scoped></style>

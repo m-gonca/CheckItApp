@@ -3,7 +3,7 @@
     <div class="w-full flex flex-col gap-4 text-center">
       <h1 class="self-center text-4xl font-light text-white">Welcome back</h1>
       <h1 class="self-center text-4xl font-semibold text-teal-400">
-        {{ username }}
+        {{ user.username }}
       </h1>
     </div>
 
@@ -67,12 +67,14 @@
 </template>
 
 <script setup>
-import { ref, onBeforeMount, onMounted } from "vue";
+import { ref, onMounted, toRaw } from "vue";
 import { useUserStore } from "../stores/user";
+import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
+const { user } = storeToRefs(userStore);
 
-const username = ref("");
+
 const taskTitle = ref("");
 const taskDescription = ref("");
 const showError = ref("");
@@ -101,10 +103,5 @@ const newTaskEmit = () => {
 const showAddTask = () => {
   showAddForm.value = !showAddForm.value;
 };
-
-onMounted(async() => {
-  await userStore.getProfile();
-  username.value = userStore.user.username;
-});
 
 </script>

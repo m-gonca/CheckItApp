@@ -9,6 +9,7 @@
     <div class="flex flex-wrap justify-between items-center mx-auto">
       <!-- LEFT SIDE -->
       <div class="flex">
+
         <!-- LOGO -->
         <router-link to="/" class="flex items-center">
           <img
@@ -21,6 +22,7 @@
             >Check it</span
           >
         </router-link>
+
         <!-- NAV BAR OPTIONS FOR DESKTOP-->
         <div
           class="hidden ml-10 justify-between items-center w-full md:flex md:w-auto md:order-1"
@@ -60,9 +62,11 @@
             </li>
           </ul>
         </div>
+
       </div>
       <!-- RIGHT SIDE-->
       <div class="flex md:order-2 gap-4">
+
         <!-- DATE -->
         <div
           class="hidden justify-between gap-2 items-center w-full lg:flex lg:w-auto lg:order-first"
@@ -77,17 +81,7 @@
           class="block py-2 pr-4 pl-3 text-white bg-teal-600 rounded md:bg-transparent md:text-teal-600 md:p-0 dark:text-white"
           aria-current="page"
         >
-          <img
-            v-if="avatarPath"
-            :src="avatarPath"
-            alt="profile-pic"
-            class="h-40 w-40 rounded-full border-5"
-          />
-          <img
-            v-else
-            src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1663600832/final%20project/basicprofile_jy2efd.png"
-            class="h-10 w-10 rounded-full"
-          />
+        <AvatarImage/>
         </router-link>
 
         <!-- LOG OUT BUTTON -->
@@ -98,8 +92,8 @@
         >
           Log out
         </button>
-        <!-- NAV BAR OPTIONS FOR MOBILE: HAMBURGUER MENU -->
 
+        <!-- NAV BAR OPTIONS FOR MOBILE: HAMBURGUER MENU -->
         <div class="block md:hidden">
           <button
             @click="changeClickBurger"
@@ -141,6 +135,7 @@
             </ul>
           </nav>
         </div>
+        
       </div>
     </div>
   </nav>
@@ -151,36 +146,22 @@ import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { supabase } from "../supabase";
 import { useUserStore } from "../stores/user";
+import AvatarImage from "../components/AvatarImage.vue"
 import moment from "moment";
 
-const userStore = useUserStore();
 const time = moment().format("Do MMMM YYYY");
-const avatarPath = ref("");
-const clickBurger = ref(false);
 const redirect = useRouter();
+const userStore = useUserStore();
+const clickBurger = ref(false);
 const errorMsg = ref("");
 
 const changeClickBurger = () => {
   clickBurger.value = !clickBurger.value;
 };
 
-const getUser = async () => {
-  try {
-    loading.value = true;
-    await useUserStore().getProfile();
-    avatarPath.value = userStore.user.avatar_url;
-    loading.value = false;
-  } catch (error) {
-    errorMsg.value = "There's been an error getting your profile（◞‸◟ ）";
-    setTimeout(() => {
-      errorMsg.value = null;
-    }, 5000);
-  }
-};
-
 const signOut = async () => {
   try {
-    await useUserStore().signOut();
+    await userStore.signOut();
     redirect.push({ path: "/auth" });
   } catch (error) {
     errorMsg.value = error.message;
@@ -189,13 +170,4 @@ const signOut = async () => {
     }, 5000);
   }
 };
-
-onMounted(() => {
-  getUser();
-  // await userStore.getProfile();
-  // avatarPath.value = userStore.user.avatar_url;
-  console.log(avatarPath.value);
-});
 </script>
-
-<style></style>

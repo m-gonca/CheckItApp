@@ -47,11 +47,13 @@ export const useUserStore = defineStore("user", {
       const { error } = await supabase.from("profiles").upsert(updateObject, {
         returning: "minimal",
       });
-      if(this.user.username)
+      console.log("previous username", this.user.username);
+      if(updateObject.username)
       {this.user.username = updateObject.username;}
-      if(this.user.name)
+      console.log("new username", this.user.username);
+      if(updateObject.name)
       {this.user.name = updateObject.name;}
-      if(this.user.surname)
+      if(updateObject.surname)
       {this.user.surname = updateObject.surname;}
       return this.user;
   },

@@ -1,6 +1,6 @@
 <template>
     <img
-      v-if="user.avatar_url_temp != null"
+      v-if="user.avatar_url_temp"
       :src="user.avatar_url_temp"
       alt="Avatar"
       class="h-10 w-10 rounded-full border-5"

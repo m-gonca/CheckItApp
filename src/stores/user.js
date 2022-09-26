@@ -32,7 +32,6 @@ export const useUserStore = defineStore("user", {
         if (error) throw error;
         if (data) {
           this.user.avatar_url_temp = URL.createObjectURL(data);
-          this.updateProfile({avatar_url: path});
         }
       } catch (error) {
         console.error("Error downloading image: ", error.message);
@@ -48,6 +47,12 @@ export const useUserStore = defineStore("user", {
       const { error } = await supabase.from("profiles").upsert(updateObject, {
         returning: "minimal",
       });
+      if(this.user.username)
+      {this.user.username = updateObject.username;}
+      if(this.user.name)
+      {this.user.name = updateObject.name;}
+      if(this.user.surname)
+      {this.user.surname = updateObject.surname;}
       return this.user;
   },
 

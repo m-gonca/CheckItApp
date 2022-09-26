@@ -60,7 +60,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { supabase } from "../supabase";
 import { useUserStore } from "../stores/user";
 import Nav from "../components/Nav.vue";
@@ -104,6 +104,8 @@ const uploadAvatar = async (evt) => {
 
     //le decimos que la descargue para actualizarla
     await userStore.downloadImage(filePath);
+    await userStore.updateProfile({avatar_url: filePath});
+
 
   } catch (error) {
     alert(error.message);

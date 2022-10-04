@@ -1,27 +1,30 @@
 <template>
-  <div class="w-full h-full border-2 flex flex-col justify-around my-4">
-    <div class="flex flex-col justify-between text-center items-center border-2 w-full">
+  <div >
+    <div
+    class="border-4 border-blue-500 flex flex-col gap-4"
+    >
       <button
         @click="setTimer"
-        class="w-4/5 rounded-xl relative px-6 py-2 text-center font-medium my-4 text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400 "
+        class="w-full rounded-xl  px-6 py-2 text-center font-medium  text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400"
       >
         Pomodoro
       </button>
       <button
         @click="setTimer"
-        class="w-4/5 rounded-xl relative px-6 py-2 text-center font-semibold my-4 text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400 "
+        class="w-full rounded-xl  px-6 py-2 text-center font-semibold  text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400"
       >
         Short Break
       </button>
       <button
         @click="setTimer"
-        class="w-4/5 rounded-xl relativepx-6 py-2 text-center font-semibold my-4 text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400 "
+        class="w-full rounded-xl px-6 py-2 text-center font-semibold  text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400"
       >
         Long Break
       </button>
-    </div>
-    <PomodoroTimer :type="timerType" />
   </div>
+    <PomodoroTimer :type="timerType"
+    class="flex flex-col items-center gap-4 border-2 border-violet-800" />
+</div>
 </template>
 
 <script setup>

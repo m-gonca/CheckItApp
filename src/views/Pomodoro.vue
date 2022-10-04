@@ -36,9 +36,9 @@
         <!-- POMODORO DIV -->
         <div
           v-else
-          class="flex flex-col items-center py-10 md:w-3/5 lg:py-4 border-4 border-red-600"
+          class="flex flex-col items-center py-10 md:w-3/5 lg:py-4 "
         >
-            <PomodoroMain class="border-4 w-4/5 m-auto flex flex-col justify-start gap-8 h-full"/>
+            <PomodoroMain class="w-4/5 m-auto flex flex-col justify-start gap-8 h-full"/>
             <button
               @click="showPomodoro"
               class="text-white text-2xl m-auto w-4/5 my-6 font-semibold bg-teal-400 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center lg:text-xl"

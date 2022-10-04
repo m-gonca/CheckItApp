@@ -1,7 +1,7 @@
 <template>
   <div >
     <div
-    class="border-4 border-blue-500 flex flex-col gap-4"
+    class=" flex flex-col gap-4 lg:flex-row lg:pt-4"
     >
       <button
         @click="setTimer"
@@ -23,7 +23,7 @@
       </button>
   </div>
     <PomodoroTimer :type="timerType"
-    class="flex flex-col items-center gap-4 border-2 border-violet-800" />
+    class="flex flex-col items-center gap-4" />
 </div>
 </template>
 

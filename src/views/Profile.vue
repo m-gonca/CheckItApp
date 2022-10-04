@@ -2,21 +2,21 @@
   <div class="flex flex-col justify-between h-screen">
     <Nav />
     <div
-      class="flex-auto flex-col w-full bg-no-repeat bg-cover bg-bottom"
+      class="flex-auto flex-col w-full bg-no-repeat bg-cover bg-bottom "
       style="
         background-image: url(https://res.cloudinary.com/dmcofgm8p/image/upload/v1661440928/final%20project/02460614940ea24714c7dc28fc03438b_ifxyk1.jpg);
       "
     >
-    <div class="h-full flex flex-col justify-between  "> 
-      <div class="flex flex-col text-center w-3/5 m-auto">
+    <div class="h-full flex flex-col justify-between  md:h-4/5 md:my-18"> 
+      <div class="flex flex-col text-center my-4 md:my-6 w-3/5 m-auto md:mt-10">
         <h1 class="self-center text-4xl font-light text-white">
           Update your profile
         </h1>
       </div>
       <!-- AVATAR IMAGE UPDATE -->
-      <div class="grid gap-5 w-3/5 m-auto md:w-1/5">
+      <div class="grid gap-5 w-3/5 m-auto mb-6  md:w-2/5 md:mt-8">
         <AvatarImage class="h-40 w-40 m-auto md:h-60 md:w-60" />
-        <div class="text-white w-full font-semibold bg-teal-400 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center m-auto ">
+        <div class="text-white md:mt-2 lg:w-2/5 font-semibold bg-teal-400 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center m-auto ">
           <label for="single">
             {{ uploading ? "Uploading ..." : "Choose a pic" }}
           </label>
@@ -32,7 +32,7 @@
       </div>
 
       <!-- REST OF THE FORM -->
-      <form class="grid gap-5 mb-8 w-3/5 m-auto md:w-2/5 " @submit.prevent="updateData">
+      <form class="grid gap-5 w-3/5 md:mt-4 m-auto md:w-2/5 mb-8 " @submit.prevent="updateData">
         <div class="flex justify-between ">
           <input
             class="bg-teal-100 w-full rounded-xl px-4 py-3"
@@ -76,10 +76,10 @@
 import { ref } from "vue";
 import { supabase } from "../supabase";
 import { useUserStore } from "../stores/user";
+import { storeToRefs } from "pinia";
 import Nav from "../components/Nav.vue";
 import AvatarImage from "../components/AvatarImage.vue";
 import Footer from "../components/Footer.vue";
-import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);

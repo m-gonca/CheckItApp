@@ -8,23 +8,28 @@ export const useUserStore = defineStore("user", {
     async fetchUser() {
       const user = await supabase.auth.user();
       this.user = user;
-      const { data, error, status } = await supabase
+      console.log(user);
+      if (user) {
+        const { data, error, status } = await supabase
           .from("profiles")
           .select(`username, name, surname, avatar_url`)
           .eq("id", user.id)
           .single();
-      if (error && status !== 406) throw error;
-      if (data) {
+
+        if (error && status !== 406) throw error;
+        if (data) {
           this.user.username = data.username;
           this.user.name = data.name;
           this.user.surname = data.surname;
           this.user.avatar_url = data.avatar_url;
+          console.log(this.user.avatar_url);
           this.downloadImage(data.avatar_url);
+        }
       }
       return this.user;
     },
 
-    async downloadImage (path) {
+    async downloadImage(path) {
       try {
         const { data, error } = await supabase.storage
           .from("avatars")
@@ -48,26 +53,31 @@ export const useUserStore = defineStore("user", {
         returning: "minimal",
       });
       console.log("previous username", this.user.username);
-      if(updateObject.username)
-      {this.user.username = updateObject.username;}
+      if (updateObject.username) {
+        this.user.username = updateObject.username;
+      }
       console.log("new username", this.user.username);
-      if(updateObject.name)
-      {this.user.name = updateObject.name;}
-      if(updateObject.surname)
-      {this.user.surname = updateObject.surname;}
+      if (updateObject.name) {
+        this.user.name = updateObject.name;
+      }
+      if (updateObject.surname) {
+        this.user.surname = updateObject.surname;
+      }
       return this.user;
-  },
+    },
 
     async signUp(email, password, username) {
-      const { user, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      },
-      {
-        data: { 
-          username: username,
+      const { user, error } = await supabase.auth.signUp(
+        {
+          email: email,
+          password: password,
+        },
+        {
+          data: {
+            username: username,
+          },
         }
-    });
+      );
       if (error) throw error;
       if (user) {
         this.user = user;
@@ -86,7 +96,7 @@ export const useUserStore = defineStore("user", {
       );
       if (error) throw error;
       if (user) {
-        this.user = user;
+        this.fetchUser();
       }
     },
 

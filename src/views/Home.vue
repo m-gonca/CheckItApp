@@ -30,8 +30,13 @@ import NewTask from "../components/NewTask.vue";
 import TaskItem from "../components/TaskItem.vue";
 import Footer from "../components/Footer.vue";
 import { useTaskStore } from "../stores/task";
+import { useUserStore } from "../stores/user";
+import { storeToRefs } from "pinia";
 
 const taskStore = useTaskStore();
+
+const userStore = useUserStore();
+const { user } = storeToRefs(userStore);
 
 const addToDo = async (newTask) => {
   const res = await taskStore.addTask(newTask.title, newTask.description);
@@ -57,7 +62,14 @@ const editToDo = async (newTask) => {
   taskStore.fetchTasks();
 };
 
-onMounted(async() => {
+onMounted(async () => {
+  console.log("he entrado aqui");
+  console.log(user);
+
+  if (user == null) {
+    await userStore.fetchUser();
+    console.log("he entrado en fetch");
+  }
   await taskStore.fetchTasks();
 });
 </script>

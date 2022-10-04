@@ -23,8 +23,8 @@ onMounted(async () => {
       appReady.value = true;
       router.push({ path: "/auth" });
     } 
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.log(error);
   }
 });
 </script>

@@ -3,19 +3,19 @@
     <div class="flex flex-col lg:flex-row lg:items-baseline w-full m-auto lg:justify-center ">
       <div class="flex flex-col gap-4 lg:flex-row lg:pt-4 lg:justify-between lg:w-full">
         <button
-          @click="timerStore.setTimer(pomodoro)"
+          @click="timerStore.setTimer('pomodoro')"
           class="w-full rounded-xl px-6 py-2 text-center font-medium text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400 lg:text-xl xl:hover:text-2xl"
         >
           Pomodoro
         </button>
         <button
-          @click="timerStore.setTimer(shortBreak)"
+          @click="timerStore.setTimer('shortBreak')"
           class="w-full rounded-xl px-6 py-2 text-center font-semibold text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400 lg:text-xl xl:hover:text-2xl"
         >
           Short Break
         </button>
         <button
-          @click="timerStore.setTimer(longBreak)"
+          @click="timerStore.setTimer('longBreak')"
           class="w-full rounded-xl px-6 py-2 text-center font-semibold text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400 lg:text-xl xl:hover:text-2xl"
         >
           Long Break

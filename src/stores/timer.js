@@ -15,30 +15,48 @@ export const useTimerStore = defineStore("timer", {
   }),
   actions: {
     setTimer(type) {
-      if (type === "pomodoro") {
+      console.log("he entrado en setimer");
+      if (type === 'pomodoro') {
+        console.log("he entrado en 1");
+
         this.timer = {
           type: "pomodoro",
           name: "Pomodoro",
           min: 25,
           back: 25,
-          formatMin:"25"
+          sec: 0,
+          formatMin:"25",
+          formatSec: "00",
         };
-      } else if (type === "shortBreak") {
+        console.log(this.timer);
+
+      } else if (type === 'shortBreak') {
+        console.log("he entrado en 2");
+
         this.timer = {
           type: "shortBreak",
           name: "Short Break",
           min: 5,
           back: 5,
-          formatMin:"05"
+          sec: 0,
+          formatMin:"05",
+          formatSec: "00",
         };
-      } else if (type === "longBreak") {
+        console.log(this.timer);
+      } else if (type === 'longBreak') {
+        console.log("he entrado en 3");
+
         this.timer = {
           type: "longBreak",
           name: "Long Break",
           min: 15,
           back: 15,
-          formatMin:"15"
+          sec: 0,
+          formatMin:"15",
+          formatSec: "00",
         };
+        console.log(this.timer);
+
       }
     },
 
@@ -61,6 +79,7 @@ export const useTimerStore = defineStore("timer", {
     countDown() {
       this.timer.sec--;
       if (this.timer.min === 0 && this.timer.sec === 0) {
+        console.log("he entrado en el final");
         this.resetTimer();
       }
       if (this.timer.sec < 0) {

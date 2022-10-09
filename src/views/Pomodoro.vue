@@ -41,9 +41,9 @@
             <PomodoroMain class="w-4/5 m-auto flex flex-col justify-start gap-8 h-full"/>
             <button
               @click="showPomodoro"
-              class="text-white text-2xl m-auto w-4/5 my-6 font-semibold bg-teal-400 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center lg:text-xl"
+              class="text-white text-xl m-auto w-4/5 my-6 font-normal bg-teal-400/80 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center lg:text-xl"
             >
-              Wanna change background!
+              Change mood!
             </button>
         </div>
       </div>
@@ -78,8 +78,8 @@ const theme3 = {
   artist: "@vaneella",
 };
 const theme4 = {
-  title: "Cotton Candy",
-  link: "https://res.cloudinary.com/dmcofgm8p/image/upload/v1661464590/final%20project/MOODS/1b46992047537f3a4b80c301db31c1da_untrbz.gif",
+  title: "Cherry blossom",
+  link: "https://res.cloudinary.com/dmcofgm8p/image/upload/v1664315182/final%20project/MOODS/f533b100c0b5d3bef97d4c075f12066a_cuodcp.gif",
   artist: "@ghibli",
 };
 const theme5 = {

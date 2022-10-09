@@ -5,11 +5,11 @@
       class="flex-auto flex-col items-center w-full bg-no-repeat bg-cover bg-center relative"
       :style="linkBg ? linkTheme : linkDefault"
     >
-      <div class="flex h-full m-auto justify-around">
+      <div class="flex h-full m-auto justify-around ">
         <!-- CHOOSING YOUR MOOD/BG AND MUSIC -->
         <div
           v-if="!moodChoice"
-          class="flex flex-col justify-between items-center py-10 md:w-3/5 lg:py-4"
+          class="flex flex-col justify-between items-center py-10 md:w-3/5 lg:py-4 "
         >
           <div
             class="w-4/5 my-6 leading-normal rounded-3xl text-center flex m-auto p-2 md:w-4/5 md:p-4 flex-col text-4xl font-semilight text-white lg:my-[-10px]"
@@ -28,20 +28,20 @@
 
           <button
             @click="showPomodoro"
-            class="text-white text-2xl w-4/5 my-6 font-semibold bg-teal-400 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center lg:text-xl lg:py-2"
+            class="text-white text-xl w-4/5 my-6 font-normal bg-teal-400/80 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center lg:text-xl lg:py-2"
           >
-            Now, take me to Pomodoro!
+            Pomodoro Time!
           </button>
         </div>
         <!-- POMODORO DIV -->
         <div
-          v-else
-          class="flex flex-col items-center py-10 md:w-3/5 lg:py-4 "
+          v-else 
+          class="flex flex-col items-center py-10 w-4/5 md:w-3/5 justify-around  lg:w-2/3 lg:py-4 xl:w-3/5 "
         >
-            <PomodoroMain class="w-4/5 m-auto flex flex-col justify-start gap-8 h-full"/>
+            <PomodoroMain/>
             <button
               @click="showPomodoro"
-              class="text-white text-xl m-auto w-4/5 my-6 font-normal bg-teal-400/80 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center lg:text-xl"
+              class="text-white text-xl w-full my-6 font-normal bg-teal-400/80 hover:bg-violet-400 rounded-xl px-5 py-2.5 text-center lg:text-xl lg:py-2 2xl:w-2/3"
             >
               Change mood!
             </button>

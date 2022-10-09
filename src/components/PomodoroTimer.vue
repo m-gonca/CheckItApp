@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gap-10">
     <div class="text-7xl lg:text-[200px] font-bold text-center text-white">
       <h1>{{ timer.formatMin }}:{{ timer.formatSec }}</h1>
     </div>

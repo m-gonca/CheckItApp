@@ -5,7 +5,7 @@ export const useTimerStore = defineStore("timer", {
     timer: {
       type: "pomodoro",
       name: "Pomodoro",
-      min: 1,
+      min: 25,
       back: 25,
       sec: 0,
       formatMin: "25",

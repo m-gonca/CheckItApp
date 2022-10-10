@@ -6,58 +6,42 @@ export const useTimerStore = defineStore("timer", {
       type: "pomodoro",
       name: "Pomodoro",
       min: 25,
-      back: 25,
       sec: 0,
       formatMin: "25",
       formatSec: "00",
       showSettings: false,
+      autoBreak: true,
+      audioFile: new Audio('https://res.cloudinary.com/dmcofgm8p/video/upload/v1665349812/final%20project/SOUNDS/harp-motif2-36586_gt210a.mp3'),
+      audioFile2: new Audio('https://res.cloudinary.com/dmcofgm8p/video/upload/v1665357005/final%20project/SOUNDS/winfantasia-6912_emrkzj.mp3'),
     },
   }),
   actions: {
     setTimer(type) {
-      console.log("he entrado en setimer");
       if (type === 'pomodoro') {
-        console.log("he entrado en 1");
-
-        this.timer = {
-          type: "pomodoro",
-          name: "Pomodoro",
-          min: 25,
-          back: 25,
-          sec: 0,
-          formatMin:"25",
-          formatSec: "00",
+        console.log("entro aqui");
+        this.timer.type = 'pomodoro';
+        this.timer.name = 'Pomodoro';
+        this.timer.min = 25;
+        this.timer.formatMin = '25';
+        this.timer.sec = 0;
+        this.timer.formatSec = '00';
+        }
+      else if (type === 'shortBreak') {
+        this.timer.type = 'shortBreak';
+        this.timer.name = 'Short Break';
+        this.timer.min = 5;
+        this.timer.formatMin = '05';
+        this.timer.sec = 0;
+        this.timer.formatSec = '00';
+        }
+      else if (type === 'longBreak') {
+        this.timer.type = 'longBreak';
+        this.timer.name = 'Long Break';
+        this.timer.min = 15;
+        this.timer.formatMin = '15';
+        this.timer.sec = 0;
+        this.timer.formatSec = '00';
         };
-        console.log(this.timer);
-
-      } else if (type === 'shortBreak') {
-        console.log("he entrado en 2");
-
-        this.timer = {
-          type: "shortBreak",
-          name: "Short Break",
-          min: 5,
-          back: 5,
-          sec: 0,
-          formatMin:"05",
-          formatSec: "00",
-        };
-        console.log(this.timer);
-      } else if (type === 'longBreak') {
-        console.log("he entrado en 3");
-
-        this.timer = {
-          type: "longBreak",
-          name: "Long Break",
-          min: 15,
-          back: 15,
-          sec: 0,
-          formatMin:"15",
-          formatSec: "00",
-        };
-        console.log(this.timer);
-
-      }
     },
 
     startTimer(){
@@ -70,24 +54,29 @@ export const useTimerStore = defineStore("timer", {
 
     resetTimer() {
       this.stopTimer();
-      this.timer.min = this.timer.back;
-      this.timer.sec = 0;
-      this.timer.formatMin = this.timer.back;
-      this.timer.formatSec = "00";
+      this.setTimer(this.timer.type);
     },
 
+    
     countDown() {
       this.timer.sec--;
       if (this.timer.min === 0 && this.timer.sec === 0) {
-        console.log("he entrado en el final");
-        this.resetTimer();
+        if(this.timer.autoBreak === true && this.timer.type === 'pomodoro'){
+          this.timer.audioFile.play();
+          this.setTimer('shortBreak');
+          this.startTimer();
+        }
+        else if(this.timer.autoBreak === true && this.timer.type === 'shortBreak'){
+          console.log("entro aqui 2");
+          this.timer.audioFile2.play();
+          this.setTimer('pomodoro');
+          this.startTimer();
+        }
       }
       if (this.timer.sec < 0) {
         this.timer.sec = 59;
         this.timer.min--;
       } 
-
-
       this.timer.formatSec = this.timer.sec.toLocaleString(undefined, {
         minimumIntegerDigits: 2,
       });

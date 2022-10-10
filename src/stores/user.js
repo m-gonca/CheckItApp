@@ -8,7 +8,7 @@ export const useUserStore = defineStore("user", {
     async fetchUser() {
       const user = await supabase.auth.user();
       this.user = user;
-      console.log(user);
+      // console.log(user);
       if (user) {
         const { data, error, status } = await supabase
           .from("profiles")
@@ -22,7 +22,7 @@ export const useUserStore = defineStore("user", {
           this.user.name = data.name;
           this.user.surname = data.surname;
           this.user.avatar_url = data.avatar_url;
-          console.log(this.user.avatar_url);
+          // console.log(this.user.avatar_url);
           this.downloadImage(data.avatar_url);
         }
       }

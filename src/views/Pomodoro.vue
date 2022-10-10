@@ -98,10 +98,8 @@ const artist = ref("");
 
 const setBackground = (link) => {
   linkTheme.value = "background-image: url(" + link + ");`";
-  //console.log(linkTheme.value);
   const chosenTheme = themes.filter((theme) => theme.link === link);
   artist.value = chosenTheme[0].artist;
-  //console.log(artist.value);
   linkBg.value = true;
 };
 

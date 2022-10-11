@@ -4,7 +4,7 @@
       <h1>{{ timer.formatMin }}:{{ timer.formatSec }}</h1>
     </div>
     <div class="w-full flex justify-center gap-4 lg:gap-8">
-      <button @click="timerStore.startTimer()">
+      <button @click="timerStore.startTimer()" :disabled="timer.playDisabled">
         <img
           src="https://res.cloudinary.com/dmcofgm8p/image/upload/v1664909705/final%20project/ICONS/play-xxl_h3jgvv.png"
           alt="play"
@@ -39,6 +39,6 @@ import { storeToRefs } from "pinia";
 
 const timerStore = useTimerStore();
 const { timer } = storeToRefs(timerStore);
+const on = ref(false);
 
-// const formatSec = ref(timer.sec.toLocaleString(undefined, { minimumIntegerDigits: 2 }));
 </script>

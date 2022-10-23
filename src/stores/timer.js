@@ -12,7 +12,6 @@ export const useTimerStore = defineStore("timer", {
       counter: 0,
       showSettings: false,
       autoBreak: true,
-      playDisabled: false,
       audioFile: new Audio(
         "https://res.cloudinary.com/dmcofgm8p/video/upload/v1665349812/final%20project/SOUNDS/harp-motif2-36586_gt210a.mp3"
       ),
@@ -52,7 +51,6 @@ export const useTimerStore = defineStore("timer", {
     setTimer(type) {
       if (type === "pomodoro") {
         console.log("set timer pomodoro");
-
         this.timer.type = this.pomodoro.type;
         this.timer.name = this.pomodoro.name;
         this.timer.min = this.pomodoro.min;
@@ -61,10 +59,6 @@ export const useTimerStore = defineStore("timer", {
         this.timer.formatSec = this.pomodoro.formatSec;
       } else if (type === "shortBreak") {
         console.log("set timer shortbreak");
-        console.log(this.timer.min);
-        console.log(this.shortBreak.min);
-        console.log(this.shortBreak.formatMin);
-
         this.timer.type = this.shortBreak.type;
         this.timer.name = this.shortBreak.name;
         this.timer.min = this.shortBreak.min;
@@ -73,7 +67,6 @@ export const useTimerStore = defineStore("timer", {
         this.timer.formatSec = this.shortBreak.formatSec;
       } else if (type === "longBreak") {
         console.log("set timer longbreak");
-
         this.timer.type = this.longBreak.type;
         this.timer.name = this.longBreak.name;
         this.timer.min = this.longBreak.min;
@@ -93,19 +86,10 @@ export const useTimerStore = defineStore("timer", {
       this.longBreak.formatMin = this.longBreak.min.toLocaleString(undefined, {
         minimumIntegerDigits: 2,
       });
-      console.log(this.pomodoro.min);
-      console.log(this.pomodoro.formatMin);
-      console.log(this.shortBreak.min);
-      console.log(this.shortBreak.formatMin);
-      console.log(this.longBreak.min);
-      console.log(this.longBreak.formatMin);
-
-
       this.setTimer(this.timer.type);
     },
 
     startTimer() {
-      console.log(this.timer.autoBreak);
       if (!(this.timer.min === 0 && this.timer.sec === 0)) {
         this.timer.playDisabled = true;
         this.timer.start = setInterval(this.countDown, 1000);

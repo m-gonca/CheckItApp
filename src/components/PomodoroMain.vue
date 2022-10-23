@@ -4,8 +4,9 @@
       class="flex flex-col lg:flex-row lg:items-baseline w-full m-auto lg:justify-center"
     >
       <div
-        class="flex flex-col gap-4 lg:flex-row lg:pt-4 lg:justify-between lg:w-full"
+        class="flex flex-col gap-4 lg:pt-4 lg:justify-between lg:w-full"
       >
+      <div class="flex flex-col gap-4 lg:flex-row">
         <button
           @click="timerStore.setTimer('pomodoro')"
           class="w-full rounded-xl px-6 py-2 text-center font-medium text-white text-2xl shadow-md duration-75 hover:bg-violet-400 bg-teal-400 lg:text-xl xl:hover:text-2xl"
@@ -40,6 +41,7 @@
             class="xl:w-10 transition ease-in-out delay-150 hover:scale-125 duration-300"
           />
         </button>
+        </div>
         <form
           v-if="timer.showSettings"
           @submit.prevent="timerStore.updateTimer()"

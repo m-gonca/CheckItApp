@@ -39,6 +39,6 @@ import { storeToRefs } from "pinia";
 
 const timerStore = useTimerStore();
 const { timer } = storeToRefs(timerStore);
-const on = ref(false);
+// const on = ref(false);
 
 </script>

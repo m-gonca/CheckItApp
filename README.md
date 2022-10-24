@@ -10,19 +10,31 @@
 
 <p align="center">
 	<a href="#key-features">Key Features</a> •
+	<a href="#key-features">New Features</a> •
 	<a href="#key-features">Technologies</a> •
 	<a href="#key-features">Timeline</a>
 </p>
 
 ## Key Features
 
-- Sign in, sign up and sign out functionalities
-- Create tasks and upload them to the database
-- Read tasks and show them in the front page
-- Update tasks easily by clicking on edit button
-- Delete tasks from page and database
-- Nice easy-to-use and chill UX-UI
+- **Sign in, sign up and sign out** functionalities
+- **Create tasks** and upload them to the database
+- **Read tasks** and show them in the front page
+- **Update tasks** easily by clicking on edit button
+- **Delete tasks** from page and database
+- Nice easy-to-use and **chill UX-UI**
+- **Clock**
 
+## New Features!
+
+- Updated alerts
+- Improved styling in confirmation emails with Supabase
+- **Profile section** with: avatar image, nickname, name and surname
+- Updated sign in to introduce directly a nickname
+- **Pomodoro timer** with different counters and alarms
+- Settings button to adapt timers to user needs
+- Mood choice with changing **backgrounds** and **songs!**
+- Mute / unmute button
 
 ## Technologies
 
@@ -31,12 +43,12 @@
 - Tailwind for styling
 - Pinia for stage management
 - Supabase as database
+- Sweetalarm for alerts
 
 
-## Timeline
+## Timeline during bootcamp project (only key features)
 
 <details><summary><b>Display Timeline</b></summary>
-
 
 ### Friday 19/08
 

@@ -177,9 +177,11 @@ const redirect = useRouter();
 // Arrow function to Signin user to supaBase
 const signIn = async () => {
   try {
+    console.log("dentro de sign in esto es el userantes del sign in", useUserStore().user);
     // calls the user store and send the users info to backend to logIn
     await useUserStore().signIn(email.value, password.value);
     // redirects user to the homeView
+    console.log("dentro de sign in esto es el user despues del sign in", useUserStore().user);
     redirect.push({ path: "/" });
   } catch (error) {
     // displays error message

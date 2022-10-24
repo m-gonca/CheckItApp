@@ -48,21 +48,15 @@ import Nav from "../components/Nav.vue";
 import Footer from "../components/Footer.vue";
 import moment from "moment";
 
-// const where I can save the date
-
 const currentHour = ref("");
 const currentMin = ref("");
 const currentSec = ref("");
-
-//function to update the time
 
 const updateCurrentTime = () => {
   currentHour.value = moment().format("h");
   currentMin.value = moment().format("mm");
   currentSec.value = moment().format("ss");
 };
-
-//call the function every second
 
 setInterval(updateCurrentTime, 1000);
 </script>

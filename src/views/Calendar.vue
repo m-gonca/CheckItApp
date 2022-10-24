@@ -10,7 +10,7 @@
       <p
         class="text-white text-7xl font-semibold bg-slate-200/10 h-full flex items-center justify-center"
       >
-        calendar in the future here
+        coming soon
       </p>
       <p class="absolute bottom-2 left-3 text-gray-400/50">Art by ni idea</p>
     </div>
